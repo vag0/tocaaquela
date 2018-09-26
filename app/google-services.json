@@ -1,0 +1,58 @@
+{
+  "project_info": {
+    "project_number": "243527365271",
+    "firebase_url": "https://tocaaquela-5397b.firebaseio.com",
+    "project_id": "tocaaquela-5397b",
+    "storage_bucket": "tocaaquela-5397b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243527365271:android:93729945bb015c18",
+        "android_client_info": {
+          "package_name": "com.vagner.tocaaquela"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "243527365271-fgrijufkh78ao9i2fcfnaor3a4k01dul.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vagner.tocaaquela",
+            "certificate_hash": "b7707f66f211ee6b0c0d23ed87f8c74ced694213"
+          }
+        },
+        {
+          "client_id": "243527365271-3pr501b281fimvaipf5qs8n67v7kd1ik.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJh7l-Ssa9YC55QPzzldevntvy4BYmriY"
+        },
+        {
+          "current_key": "AIzaSyAJh7l-Ssa9YC55QPzzldevntvy4BYmriY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "243527365271-3pr501b281fimvaipf5qs8n67v7kd1ik.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

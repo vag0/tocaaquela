@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TocaAquela</string>
+    <string name="action_settings">Settings</string>
+    <string name="email_perfil">Email</string>
+    <string name="nome_perfil">nome_perfil</string>
+    <string name="logout_google">LogOut Google</string>
+</resources>
