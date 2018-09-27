@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="navigation_eventos" type="id">Eventos</item>
+    <item name="navigation_minhas_musicas" type="id">Minhas Músicas</item>
+    <item name="navigation_perfil" type="id">Perfil</item>
+    <item name="navigation" type="id">navegation</item>
+</resources>

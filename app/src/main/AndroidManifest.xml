@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginUsuarioActivity"
+            android:name=".view.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -22,7 +22,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".PesquisaMusicaActivity" />
-        <activity android:name=".MenuArtistaActivity"></activity>
+        <activity android:name=".MenuArtistaActivity" />
+        <activity android:name=".LoginUsuarioActivity"></activity>
     </application>
 
 </manifest>
