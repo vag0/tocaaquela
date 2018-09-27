@@ -1,11 +1,8 @@
-package com.vagner.tocaaquela.fragment;
+package com.vagner.tocaaquela.view;
 
-
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -21,11 +18,7 @@ import com.vagner.tocaaquela.utils.MusicaList;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class MinhasMusicasFragment extends Fragment {
+public class EscolhaDeMusicasActivity extends AppCompatActivity {
     ListView listViewMusicas;
 
     List<Musica> musicas;
@@ -33,27 +26,22 @@ public class MinhasMusicasFragment extends Fragment {
     DatabaseReference databaseMusicas;
 
 
-
-
-    public MinhasMusicasFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_minhas_musicas, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_escolha_de_musicas);
 
         databaseMusicas = FirebaseDatabase.getInstance().getReference("musicas");
 
 
 
-        listViewMusicas = (ListView) view.findViewById(R.id.listViewMusicas_id);
+        listViewMusicas = (ListView) findViewById(R.id.listViewMusicas_id);
 
 
 
         musicas = new ArrayList<>();
+
+
 
         listViewMusicas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -65,11 +53,7 @@ public class MinhasMusicasFragment extends Fragment {
             }
         });
 
-
-
-        return view;
     }
-
     public void buscaMusicas(){
         final ValueEventListener valueEventListener = databaseMusicas.addValueEventListener(new ValueEventListener() {
             @Override
@@ -92,7 +76,7 @@ public class MinhasMusicasFragment extends Fragment {
                     }
 
 
-                    MusicaList musicaAdapter = new MusicaList(getActivity(),musicas);
+                    MusicaList musicaAdapter = new MusicaList(EscolhaDeMusicasActivity.this,musicas);
 
                     listViewMusicas.setAdapter(musicaAdapter);
                 }catch (Exception e){
@@ -113,7 +97,5 @@ public class MinhasMusicasFragment extends Fragment {
 
         buscaMusicas();
     }
-
-
 
 }

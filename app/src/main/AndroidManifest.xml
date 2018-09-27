@@ -25,7 +25,8 @@
         <activity android:name=".MenuArtistaActivity" />
         <activity android:name=".LoginUsuarioActivity" />
         <activity android:name=".view.NovoEventoActivity" />
-        <activity android:name=".view.NovaMusicaActivity"></activity>
+        <activity android:name=".view.NovaMusicaActivity" />
+        <activity android:name=".view.EscolhaDeMusicasActivity"></activity>
     </application>
 
 </manifest>

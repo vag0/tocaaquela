@@ -4,6 +4,7 @@ package com.vagner.tocaaquela.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,7 +69,13 @@ public class PerfilFragment extends Fragment implements View.OnClickListener,Goo
 
         return view;
     }
+    @Override
+    public void onPause() {  // adicionado por último, resolveu erro do id 0
+        super.onPause();
+        googleApiClient.stopAutoManage(getActivity());
+        googleApiClient.disconnect();
 
+    }
 
 
     @Override

@@ -21,6 +21,7 @@
     <string name="hora_inicio">Hora Inicio</string>
     <string name="dia_evento">Dia Evento</string>
     <string name="local_evento">Local Evento</string>
+    <string name="nome_autor">Nome Autor</string>
 
 
 </resources>
