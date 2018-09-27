@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import com.vagner.tocaaquela.view.NovaMusicaActivity;
+
 public class MenuArtistaActivity extends AppCompatActivity implements View.OnClickListener{
     private Boolean isFabOpen = false;
     FloatingActionButton fab1;
@@ -61,12 +63,13 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
                 break;
             case R.id.fab1:
                 Intent intencao = new Intent(this,PesquisaMusicaActivity.class);
+
                 startActivity(intencao);
 
                 Log.d("Raj", "Fab 1");
                 break;
             case R.id.fab2:
-                Intent intencao2 = new Intent(this,PesquisaMusicaActivity.class);
+                Intent intencao2 = new Intent(this, NovaMusicaActivity.class);
                 startActivity(intencao2);
 
 

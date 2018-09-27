@@ -23,7 +23,9 @@
         </activity>
         <activity android:name=".PesquisaMusicaActivity" />
         <activity android:name=".MenuArtistaActivity" />
-        <activity android:name=".LoginUsuarioActivity"></activity>
+        <activity android:name=".LoginUsuarioActivity" />
+        <activity android:name=".view.NovoEventoActivity" />
+        <activity android:name=".view.NovaMusicaActivity"></activity>
     </application>
 
 </manifest>

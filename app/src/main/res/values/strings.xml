@@ -10,6 +10,12 @@
     <string name="title_evento">Eventos</string>
     <string name="title_minhas_musicas">Minhas Músicas</string>
     <string name="title_perfil">Perfil</string>
+    <string name="id">id</string>
+    <string name="shared_config">shared_config</string>
+    <string name="nome_musica">Nome musica</string>
+    <string name="autor_musica">Autor musica</string>
+    <string name="genero_musica">Gênero musica</string>
+    <string name="salvar_musica">Salvar Música</string>
 
 
 </resources>
