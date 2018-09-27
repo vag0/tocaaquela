@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".MenuArtistaActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -27,7 +28,8 @@
         android:visibility="invisible"
         app:backgroundTint="@color/colorFAB2"
         app:elevation="6dp"
-        app:pressedTranslationZ="12dp" />
+        app:pressedTranslationZ="12dp"
+        android:src="@drawable/music" />
 
 
     <android.support.design.widget.FloatingActionButton
@@ -40,7 +42,8 @@
         android:visibility="invisible"
         app:elevation="6dp"
         app:backgroundTint="@color/colorFAB1"
-        app:pressedTranslationZ="12dp" />
+        app:pressedTranslationZ="12dp"
+        android:src="@drawable/evento" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -50,5 +53,6 @@
         app:elevation="6dp"
         app:backgroundTint="@color/colorAccent"
         app:pressedTranslationZ="12dp"
-        android:layout_margin="@dimen/fab_margin"/>
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/add" />
 </android.support.design.widget.CoordinatorLayout>
