@@ -16,6 +16,11 @@
     <string name="autor_musica">Autor musica</string>
     <string name="genero_musica">Gênero musica</string>
     <string name="salvar_musica">Salvar Música</string>
+    <string name="salvar_evento">Salvar Evento</string>
+    <string name="hora_termino">Hora Termino</string>
+    <string name="hora_inicio">Hora Inicio</string>
+    <string name="dia_evento">Dia Evento</string>
+    <string name="local_evento">Local Evento</string>
 
 
 </resources>

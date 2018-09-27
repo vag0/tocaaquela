@@ -1,9 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_guest_form"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.NovoEventoActivity">
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.vagner.tocaaquela.view.NovoEventoActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/local_evento"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edit_local"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dia_evento"
+        android:textAllCaps="true"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edit_dia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hora_inicio"
+        android:textAllCaps="true"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edit_hora_inicio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hora_termino"
+        android:textAllCaps="true"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edit_hora_termino"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="20sp" />
+
+    <Button
+        android:layout_marginTop="80dp"
+        android:id="@+id/button_save_evento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:background="@drawable/round_btn_linear_green"
+        android:text="@string/salvar_evento"
+        android:textStyle="bold"
+        android:textColor="@color/colorBranco" />
+
+</LinearLayout>

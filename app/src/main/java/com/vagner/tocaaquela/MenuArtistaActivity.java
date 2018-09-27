@@ -14,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.vagner.tocaaquela.view.NovaMusicaActivity;
+import com.vagner.tocaaquela.view.NovoEventoActivity;
 
 public class MenuArtistaActivity extends AppCompatActivity implements View.OnClickListener{
     private Boolean isFabOpen = false;
@@ -62,7 +63,7 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
                 animateFAB();
                 break;
             case R.id.fab1:
-                Intent intencao = new Intent(this,PesquisaMusicaActivity.class);
+                Intent intencao = new Intent(this,NovoEventoActivity.class);
 
                 startActivity(intencao);
 
