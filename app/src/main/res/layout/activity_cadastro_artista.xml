@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_guest_form"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,19 +8,19 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.vagner.tocaaquela.view.NovoEventoActivity">
+    tools:context="com.vagner.tocaaquela.view.CadastroArtistaActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/local_evento"
+        android:text="@string/nome_artistico"
         android:textAllCaps="true"
         android:textColor="@color/colorPrimaryText"
-        android:textSize="18sp"
+        android:textSize="10sp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edit_local"
+        android:id="@+id/edit_email_cadastro_artista"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
@@ -31,7 +30,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dia_evento"
+        android:text="@string/senha_artista"
         android:textAllCaps="true"
         android:layout_marginTop="10dp"
         android:textColor="@color/colorPrimaryText"
@@ -39,7 +38,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edit_dia"
+        android:id="@+id/edit_senha_cadastro_artista"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
@@ -50,7 +49,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hora_inicio"
+        android:text="@string/confirma_senha"
         android:textAllCaps="true"
         android:layout_marginTop="10dp"
         android:textColor="@color/colorPrimaryText"
@@ -58,39 +57,23 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edit_hora_inicio"
+        android:id="@+id/edit_confirma_senha_cadastro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:textColor="@color/colorPrimaryText"
         android:textSize="20sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hora_termino"
-        android:textAllCaps="true"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/colorPrimaryText"
-        android:textSize="10sp"
-        android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/edit_hora_termino"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:textColor="@color/colorPrimaryText"
-        android:textSize="20sp" />
 
     <Button
         android:layout_marginTop="80dp"
-        android:id="@+id/button_save_evento"
+        android:id="@+id/button_save_artista"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
         android:background="@drawable/round_btn_linear_green"
-        android:text="@string/salvar_evento"
+        android:text="@string/salvar_artista"
         android:textStyle="bold"
         android:textColor="@color/colorBranco" />
 

@@ -4,9 +4,11 @@ package com.vagner.tocaaquela.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -24,13 +26,14 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.vagner.tocaaquela.MenuArtistaActivity;
 import com.vagner.tocaaquela.R;
+import com.vagner.tocaaquela.view.LoginArtistaActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PerfilFragment extends Fragment implements View.OnClickListener,GoogleApiClient.OnConnectionFailedListener{
+    private Button buttonSouMusico;
     private Button buttonSingOut;
     private SignInButton buttonSingIn;
     private LinearLayout linearLayoutSectionPerfil;
@@ -48,11 +51,13 @@ public class PerfilFragment extends Fragment implements View.OnClickListener,Goo
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         View view;
 
         view = inflater.inflate(R.layout.fragment_perfil, container, false);
         linearLayoutSectionPerfil = (LinearLayout)view.findViewById(R.id.section_perfil);
         buttonSingIn = (SignInButton) view.findViewById(R.id.botao_login_perfil);
+        //buttonSouMusico = (Button)view.findViewById(R.id.botao_sou_musico);
         buttonSingOut =(Button)view.findViewById(R.id.botao_logout_google);
         imageViewPerfil =(ImageView) view.findViewById(R.id.imagem_perfil);
         textViewEmailUser = (TextView)view.findViewById(R.id.email_perfil);
@@ -66,14 +71,14 @@ public class PerfilFragment extends Fragment implements View.OnClickListener,Goo
         GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleApiClient = new GoogleApiClient.Builder(getActivity()).enableAutoManage(getActivity(),this).addApi(Auth.GOOGLE_SIGN_IN_API,signInOptions).build();
 
-
+        entrarArtista(view);
         return view;
     }
     @Override
     public void onPause() {  // adicionado por último, resolveu erro do id 0
         super.onPause();
         googleApiClient.stopAutoManage(getActivity());
-        googleApiClient.disconnect();
+       // googleApiClient.disconnect();
 
     }
 
@@ -147,8 +152,6 @@ public class PerfilFragment extends Fragment implements View.OnClickListener,Goo
             linearLayoutSectionPerfil.setVisibility(View.VISIBLE);
             buttonSingIn.setVisibility(View.GONE);
 
-            Intent intent = new Intent(getActivity(),MenuArtistaActivity.class);
-            startActivity(intent);
 
         }else{
             linearLayoutSectionPerfil.setVisibility(View.GONE);
@@ -169,6 +172,42 @@ public class PerfilFragment extends Fragment implements View.OnClickListener,Goo
             handleResult(result);
 
         }
+    }
+    private void entrarArtista(View view) {
+        buttonSouMusico = (Button) view.findViewById(R.id.botao_sou_musico);
+        buttonSouMusico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent intencao = new Intent(getActivity(), LoginEspecialista.class);
+                Intent intencao = new Intent(getActivity(),LoginArtistaActivity.class);
+
+                startActivity(intencao);
+
+            }
+        });
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        inflater.inflate(R.menu.menu_artista_login, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_sou_musico) {
+            Intent intent = new Intent(getActivity(),LoginArtistaActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 

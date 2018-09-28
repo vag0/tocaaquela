@@ -12,6 +12,7 @@
         android:background="@color/colorBranco"
         android:gravity="center"
         android:textSize="22sp"
+        android:text="@string/nome_musica"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="7dp"
         android:textColor="@color/colorPrimary"/>
@@ -43,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorBranco"
                 android:gravity="center"
-                android:text="@string/hora_inicio"
+                android:text="@string/genero_musica"
                 android:textColor="@color/colorPrimary"
                 android:textSize="11sp" />
 

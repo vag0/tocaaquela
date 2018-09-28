@@ -4,6 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PesquisaMusicaActivity">
+    android:orientation="vertical"
+    tools:context=".view.PesquisaMusicaActivity">
 
+    <EditText
+        android:id="@+id/editPalavra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Informe a palavra para pesquisa" />
+
+    <ListView
+        android:id="@+id/listVPesquisa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorBranco"
             android:textColor="@color/colorPrimary"
+            android:text="@string/nome_musica"
             android:gravity="center"
             android:textSize="22sp"
             android:layout_marginLeft="10dp"
@@ -55,19 +56,10 @@
                     android:layout_height="wrap_content"
                     android:background="@color/colorBranco"
                     android:gravity="center"
-                    android:text="@string/hora_inicio"
+                    android:text="@string/genero_musica"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="11sp" />
+                    android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/hora_termino_evento_id"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorBranco"
-                    android:gravity="center"
-                    android:text="@string/hora_termino"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="11sp" />
 
             </LinearLayout>
 

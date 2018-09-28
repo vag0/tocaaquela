@@ -26,7 +26,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class MinhasMusicasFragment extends Fragment {
-    ListView listViewMusicas;
+    ListView listViewMinhasMusicas;
 
     List<Musica> musicas;
 
@@ -49,13 +49,13 @@ public class MinhasMusicasFragment extends Fragment {
 
 
 
-        listViewMusicas = (ListView) view.findViewById(R.id.listViewMusicas_id);
+        listViewMinhasMusicas = (ListView) view.findViewById(R.id.listViewMusicasMinhasMusica_id);
 
 
 
         musicas = new ArrayList<>();
 
-        listViewMusicas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listViewMinhasMusicas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Musica musica = musicas.get(i);
@@ -94,7 +94,7 @@ public class MinhasMusicasFragment extends Fragment {
 
                     MusicaList musicaAdapter = new MusicaList(getActivity(),musicas);
 
-                    listViewMusicas.setAdapter(musicaAdapter);
+                    listViewMinhasMusicas.setAdapter(musicaAdapter);
                 }catch (Exception e){
                     e.printStackTrace();
                 }

@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="email_perfil">Email</string>
     <string name="nome_perfil">nome_perfil</string>
-    <string name="logout_google">LogOut Google</string>
+    <string name="logout_google">Sair do Google</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -22,6 +22,28 @@
     <string name="dia_evento">Dia Evento</string>
     <string name="local_evento">Local Evento</string>
     <string name="nome_autor">Nome Autor</string>
+    <string name="botao_sou_musico">Sou Musico</string>
+    <string name="nome_artista">Nome Artístico</string>
+    <string name="nome">Nome</string>
+    <string name="senha">Senha</string>
+    <string name="botao_login_artista">Entrar</string>
+    <string name="nome_artistico">Nome Artístico</string>
+    <string name="senha_artista">Senha</string>
+    <string name="confirma_senha">Confirma Senha</string>
+    <string name="salvar_artista">Salvar Artista</string>
+    <string name="cadastrar_artista_agora">Cadastre - se agora</string>
+    <string name="TocaAquela">TocaAquela</string>
+    <string name="facebook_app_id">230269664506173</string>
+    <string name="action_sou_musico">Sou musico</string>
+
+
+
+    <string name="fb_login_protocol_scheme"></string>
+
+    <string name="app_id">$app_id_here</string>
+    <string name="fbid">your fb id</string>
+
+
 
 
 </resources>

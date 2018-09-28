@@ -1,12 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.vagner.tocaaquela.view.MenuArtistaActivity">
+    tools:context="com.vagner.tocaaquela.fragment.PerfilFragment">
     <item
-        android:id="@+id/action_pesquisar"
+        android:id="@+id/action_sou_musico"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_action_pesquisar"
-        android:title="@string/action_settings"
+        android:icon="@drawable/add"
+        android:title="@string/action_sou_musico"
         app:showAsAction="always" />
-
+    
 </menu>

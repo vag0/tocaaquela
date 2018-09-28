@@ -1,21 +1,39 @@
 package com.vagner.tocaaquela.model;
 
-public class Artista {
+import com.google.firebase.database.DatabaseReference;
+import com.vagner.tocaaquela.utils.Firebase;
+
+import java.io.Serializable;
+
+public class Artista implements Serializable{
+
+    private String id;
+
+    private String email;
 
     private String nome;
 
     private String sobre;
 
-    private String email;
+    private String senha;
+
+    private String confirmaSenha;
+
+
 
 
     private int imagem;
 
-    public Artista(String nome, String sobre, String email, int imagem) {
-        this.nome = nome;
-        this.sobre = sobre;
-        this.email = email;
-        this.imagem = imagem;
+    public Artista() {
+
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -34,12 +52,20 @@ public class Artista {
         this.sobre = sobre;
     }
 
-    public String getEmail() {
-        return email;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getConfirmaSenha() {
+        return confirmaSenha;
+    }
+
+    public void setConfirmaSenha(String confirmaSenha) {
+        this.confirmaSenha = confirmaSenha;
     }
 
     public int getImagem() {
@@ -48,5 +74,21 @@ public class Artista {
 
     public void setImagem(int imagem) {
         this.imagem = imagem;
+    }
+
+    public String getEmail(){
+        return email;
+    }
+    public void setEmail(String email){
+        this.email = email;
+    }
+
+    public void salvaArtista(){
+
+        DatabaseReference reference = Firebase.getFirebase();
+        DatabaseReference artistasReference = reference.child("artistas").child(getId());
+        artistasReference.setValue(this);
+
+
     }
 }
