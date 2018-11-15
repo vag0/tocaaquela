@@ -90,7 +90,7 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.MyViewHold
             local_evento = (TextView ) itemView.findViewById(R.id.local_evento_id);
             dia_evento = (TextView ) itemView.findViewById(R.id.dia_evento_id);
             horario_inicio = (TextView ) itemView.findViewById(R.id.hora_inicio_evento_id);
-            horario_termino = (TextView ) itemView.findViewById(R.id.hora_termino_evento_id);
+           // horario_termino = (TextView ) itemView.findViewById(R.id.hora_termino_evento_id);
 
 
             cardView_evento = (CardView) itemView.findViewById(R.id.cardview_evento_id);

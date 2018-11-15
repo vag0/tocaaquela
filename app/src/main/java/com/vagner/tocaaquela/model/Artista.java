@@ -19,13 +19,15 @@ public class Artista implements Serializable{
 
     private String confirmaSenha;
 
-
-
-
-    private int imagem;
-
+    
     public Artista() {
 
+    }
+
+    public Artista(String id, String email, String nome) {
+        this.id = id;
+        this.email = email;
+        this.nome = nome;
     }
 
     public String getId() {
@@ -68,13 +70,6 @@ public class Artista implements Serializable{
         this.confirmaSenha = confirmaSenha;
     }
 
-    public int getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(int imagem) {
-        this.imagem = imagem;
-    }
 
     public String getEmail(){
         return email;
@@ -83,12 +78,5 @@ public class Artista implements Serializable{
         this.email = email;
     }
 
-    public void salvaArtista(){
 
-        DatabaseReference reference = Firebase.getFirebase();
-        DatabaseReference artistasReference = reference.child("artistas").child(getId());
-        artistasReference.setValue(this);
-
-
-    }
 }

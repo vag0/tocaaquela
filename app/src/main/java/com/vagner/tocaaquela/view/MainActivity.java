@@ -10,6 +10,7 @@ import com.vagner.tocaaquela.R;
 import com.vagner.tocaaquela.fragment.EventoFragment;
 import com.vagner.tocaaquela.fragment.MinhasMusicasFragment;
 import com.vagner.tocaaquela.fragment.PerfilFragment;
+import com.vagner.tocaaquela.fragment.TesteFragment;
 import com.vagner.tocaaquela.utils.BottomNavigationViewHelper;
 import com.vagner.tocaaquela.utils.FragmentoUtils;
 
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
                     FragmentoUtils.replace(MainActivity.this, new MinhasMusicasFragment());
                     return true;
                 case R.id.navigation_perfil:
-                    FragmentoUtils.replace(MainActivity.this, new PerfilFragment());
+                    FragmentoUtils.replace(MainActivity.this, new TesteFragment());
                     return true;
 
             }

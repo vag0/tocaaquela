@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -27,7 +26,7 @@ import com.vagner.tocaaquela.utils.Firebase;
 
 public class LoginArtistaActivity extends AppCompatActivity {
 
-    private LoginButton loginButtonFacebook;
+    //private LoginButton loginButtonFacebook;
 
     private FirebaseAuth firebaseAuth;
 
@@ -53,9 +52,9 @@ public class LoginArtistaActivity extends AppCompatActivity {
         //FacebookSdk.sdkInitialize(getApplicationContext());
       //  AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_login_artista);
+        entrarArtista();
 
         verificaArtistaLogado();
-        entrarArtista();
 
         inicializarComponentes();
         inicializarFirebaseCallback();
@@ -171,16 +170,20 @@ public class LoginArtistaActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginArtistaActivity.this,MenuArtistaActivity.class);
+                startActivity(intent);
                 Log.d("SuccessInCreateUser", "No exception");
-                if (!task.isSuccessful()) {
-                    Intent intent = new Intent(LoginArtistaActivity.this,MenuArtistaActivity.class);
-                    startActivity(intent);
+                if (task.isSuccessful()) {
+                    //Intent intent = new Intent(LoginArtistaActivity.this,MenuArtistaActivity.class);
+
+                    finish();
+                }
                    // Log.w(TAG, "onComplete: Failed=" + task.getException().getMessage());
 
                     //Catch specific exception here like this. Below is the example of password less than 6 char - weak password exception catch
-                    if (task.getException() instanceof FirebaseAuthWeakPasswordException) {
-                        Toast.makeText(getApplicationContext(), "Weak Password", Toast.LENGTH_SHORT).show();
-                    }
+                if (task.getException() instanceof FirebaseAuthWeakPasswordException) {
+                        Toast.makeText(getApplicationContext(), "Login ou Senha Incorretos", Toast.LENGTH_SHORT).show();
+
                 }
 
             }

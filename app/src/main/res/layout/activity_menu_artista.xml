@@ -7,6 +7,7 @@
     android:fitsSystemWindows="true"
     tools:context=".view.MenuArtistaActivity">
 
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,6 +18,15 @@
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_menu_artista" />
+
+    <TextView
+        android:layout_marginTop="50dp"
+        android:id="@+id/textViewUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab2"

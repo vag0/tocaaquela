@@ -10,11 +10,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.vagner.tocaaquela.R;
-import com.vagner.tocaaquela.view.NovaMusicaActivity;
-import com.vagner.tocaaquela.view.NovoEventoActivity;
-import com.vagner.tocaaquela.view.PesquisaMusicaActivity;
+
 
 public class MenuArtistaActivity extends AppCompatActivity implements View.OnClickListener{
     private Boolean isFabOpen = false;
@@ -22,6 +24,13 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
     FloatingActionButton fab2;
     FloatingActionButton fab;
     private Animation fab_open,fab_close,rotate_forward,rotate_backward;
+
+    private FirebaseAuth firebaseAuth;
+
+    //view objects
+    private TextView textViewUserName;
+    private Button buttonLogout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +48,31 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
         fab1.setOnClickListener(this);
         fab2.setOnClickListener(this);
 
+        //initializing firebase authentication object
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        //if the user is not logged in
+        //that means current user will return null
+        if(firebaseAuth.getCurrentUser() == null){
+            //closing this activity
+            finish();
+            //starting login activity
+            startActivity(new Intent(this, LoginArtistaActivityTeste.class));
+        }
+
+        //getting current user
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+
+        //initializing views
+        textViewUserName = (TextView) findViewById(R.id.textViewUserName);
+
+        //displaying logged in user name
+        textViewUserName.setText("Olá "+user.getEmail());
+
+        //adding listener to button
+      //  buttonLogout.setOnClickListener(this);
+
+
 
 
 
@@ -54,9 +88,12 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
 
 
     }
+
+
     @Override
     public void onClick(View v) {
         int id = v.getId();
+
         switch (id){
             case R.id.fab:
 
@@ -72,7 +109,6 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
             case R.id.fab2:
                 Intent intencao2 = new Intent(this, NovaMusicaActivity.class);
                 startActivity(intencao2);
-
 
                 Log.d("Raj", "Fab 2");
                 break;
@@ -123,7 +159,13 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
             startActivity(intent);
             return true;
         }
-
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_logout) {
+             firebaseAuth.signOut();
+             finish();
+             startActivity(new Intent(this, MainActivity.class));
+             return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 }

@@ -8,21 +8,23 @@
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:layout_margin="4dp"
     cardview:cardCornerRadius="4dp"
-    android:background="@color/colorAccent"
+    android:background="@color/azulEscuro"
     android:focusable="true">
 
     <LinearLayout
+        android:background="@drawable/edittext_arredondado"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBranco"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/nome_musica_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorBranco"
-            android:textColor="@color/colorPrimary"
+            android:background="@color/colorVermelho"
+            android:textColor="@color/colorBranco"
             android:text="@string/nome_musica"
             android:gravity="center"
             android:textSize="22sp"
@@ -40,10 +42,10 @@
                 android:id="@+id/nome_autor_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorBranco"
+                android:background="@color/colorVermelho"
                 android:gravity="center"
                 android:text="@string/autor_musica"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorBranco"
                 android:textSize="21sp" />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -54,10 +56,10 @@
                     android:id="@+id/genero_musica_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorBranco"
+                    android:background="@color/colorVermelho"
                     android:gravity="center"
                     android:text="@string/genero_musica"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorBranco"
                     android:textSize="16sp" />
 
 

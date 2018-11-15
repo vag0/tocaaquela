@@ -1,7 +1,6 @@
 package com.vagner.tocaaquela.fragment;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -32,7 +31,6 @@ import java.util.List;
 public class EventoFragment extends Fragment {
 
     ListView listViewEventos;
-    Context context;
 
     List<Evento> eventos;
 
@@ -55,14 +53,14 @@ public class EventoFragment extends Fragment {
 
         eventos = new ArrayList<>();
 
-        listViewEventos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listViewEventos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Evento evento = eventos.get(i);
                 Intent intencao = new Intent(getActivity(), EscolhaDeMusicasActivity.class);
                 startActivity(intencao);
                 // showUpdateDeleteDialog(consulta.getIdConsulta(), consulta.getNomeEspecialista());
-                return true;
+
             }
 
 
@@ -71,6 +69,7 @@ public class EventoFragment extends Fragment {
 
         return view;
     }
+
 
     public void buscaEventos() {
         final ValueEventListener valueEventListener = databaseEventos.addValueEventListener(new ValueEventListener() {

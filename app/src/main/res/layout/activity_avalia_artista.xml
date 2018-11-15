@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.AvaliaArtistaActivity">
+
+    <TextView
+        android:padding="20dp"
+        android:id="@+id/textView_avaliacao_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_gravity="center"/>
+
+    <RatingBar
+        android:id="@+id/ratingBar_avaliacao_id"
+        android:layout_width="235dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"/>
+
+
+    <Button
+
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:id="@+id/button_save_avaliacao_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:background="@drawable/round_btn_linear_green"
+        android:text="@string/envia_avaliacao"
+        android:textStyle="bold"
+        android:textColor="@color/colorBranco" />
+
+</LinearLayout>

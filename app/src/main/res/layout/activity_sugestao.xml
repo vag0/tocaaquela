@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="20dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.SugestaoActivity">
+
+    <TextView
+        android:id="@+id/textView_sugestao_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ENVIE SUA SUGESTÃO"
+        android:textStyle="bold"
+        android:textSize="30sp" />
+
+    <EditText
+        android:layout_marginTop="20dp"
+        android:id="@+id/editText_suagestao_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        android:layout_marginBottom="50dp"/>
+
+    <Button
+
+        android:id="@+id/button_enviar_sugestao"
+        android:layout_width="match_parent"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_btn_linear_green"
+        android:text="Enviar Sugestao" />
+</LinearLayout>

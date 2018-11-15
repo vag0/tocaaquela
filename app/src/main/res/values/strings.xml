@@ -35,15 +35,17 @@
     <string name="TocaAquela">TocaAquela</string>
     <string name="facebook_app_id">230269664506173</string>
     <string name="action_sou_musico">Sou musico</string>
-
+    <string name="action_avalia_artista">Avalia artista</string>
+    <string name="action_sou_artista">Sou artista</string>
+    <string name="action_sugestao_artista">Enviar Sugestão</string>
+    <string name="envia_avaliacao"> Enviar avaliação</string>
+    <string name="action_logout">Sair</string>
 
 
     <string name="fb_login_protocol_scheme"></string>
 
     <string name="app_id">$app_id_here</string>
     <string name="fbid">your fb id</string>
-
-
 
 
 </resources>

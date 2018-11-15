@@ -3,17 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.vagner.tocaaquela.view.MenuArtistaActivity">
     <item
-        android:id="@+id/action_pesquisar"
+        android:id="@+id/action_avaliar"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_action_pesquisar"
-        android:title="@string/action_settings"
+        android:icon="@drawable/star_icon"
+        android:title="@string/action_avalia_artista"
         app:showAsAction="always" />
     <item
-        android:id="@+id/action_logout"
+        android:id="@+id/action_sugestao"
         android:orderInCategory="100"
-        android:icon="@drawable/absent"
-        android:title="@string/action_settings"
+        android:icon="@drawable/idea_icon"
+        android:title="@string/action_sugestao_artista"
         app:showAsAction="always" />
-
 
 </menu>

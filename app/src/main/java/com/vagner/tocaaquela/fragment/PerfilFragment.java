@@ -1,7 +1,12 @@
 package com.vagner.tocaaquela.fragment;
 
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -15,19 +20,38 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.content.SharedPreferences;
+import android.widget.Toast;
+
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 import com.vagner.tocaaquela.R;
+import com.vagner.tocaaquela.model.Usuario;
 import com.vagner.tocaaquela.view.LoginArtistaActivity;
+import com.vagner.tocaaquela.view.NovoEventoActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,6 +66,8 @@ public class PerfilFragment extends Fragment implements View.OnClickListener,Goo
     private ImageView imageViewPerfil;
     private GoogleApiClient googleApiClient;
     private static final int REQ_CODE = 1234;
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    FirebaseAuth mAuth;
 
     public PerfilFragment() {
         // Required empty public constructor
@@ -55,6 +81,9 @@ public class PerfilFragment extends Fragment implements View.OnClickListener,Goo
         View view;
 
         view = inflater.inflate(R.layout.fragment_perfil, container, false);
+
+
+
         linearLayoutSectionPerfil = (LinearLayout)view.findViewById(R.id.section_perfil);
         buttonSingIn = (SignInButton) view.findViewById(R.id.botao_login_perfil);
         //buttonSouMusico = (Button)view.findViewById(R.id.botao_sou_musico);
@@ -71,14 +100,29 @@ public class PerfilFragment extends Fragment implements View.OnClickListener,Goo
         GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleApiClient = new GoogleApiClient.Builder(getActivity()).enableAutoManage(getActivity(),this).addApi(Auth.GOOGLE_SIGN_IN_API,signInOptions).build();
 
+
+
+
+        mAuth = FirebaseAuth.getInstance();
+
+
         entrarArtista(view);
         return view;
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            updateUi(true);
+        }
     }
     @Override
     public void onPause() {  // adicionado por último, resolveu erro do id 0
         super.onPause();
         googleApiClient.stopAutoManage(getActivity());
-       // googleApiClient.disconnect();
+        // googleApiClient.disconnect();
 
     }
 
@@ -94,7 +138,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener,Goo
 
 
             case R.id.botao_logout_google:
-                signOut();
+                //signOut();
                 break;
 
 
@@ -114,7 +158,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener,Goo
 
     }
 
-
+/*
     private void signOut(){
         Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
             @Override
@@ -124,9 +168,16 @@ public class PerfilFragment extends Fragment implements View.OnClickListener,Goo
         });
 
     }
-    private void handleResult(GoogleSignInResult result){
+    */
+
+    public void handleResult(GoogleSignInResult result){
         if(result.isSuccess()){
+
             GoogleSignInAccount googleSignInAccount = result.getSignInAccount();
+            SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(getString(R.string.shared_config), Context.MODE_PRIVATE);
+            String id = sharedPreferences.getString(getString(R.string.id), "");
+
+
 
             String nomePerfil = googleSignInAccount.getDisplayName();
             String emailPerfil = googleSignInAccount.getEmail();
@@ -135,6 +186,11 @@ public class PerfilFragment extends Fragment implements View.OnClickListener,Goo
             textViewNomeUser.setText(nomePerfil);
             textViewEmailUser.setText(emailPerfil);
             Glide.with(this).load(imagemPerfil).into(imageViewPerfil);
+            Usuario usuario = new Usuario();
+            usuario.setNome(nomePerfil);
+            usuario.setEmail(emailPerfil);
+            DatabaseReference myRef = database.getReference("usuarios");
+            myRef.child(id).setValue(usuario);
             updateUi(true);
 
 
@@ -145,12 +201,13 @@ public class PerfilFragment extends Fragment implements View.OnClickListener,Goo
         }
 
     }
+
     private void updateUi(boolean isLogin){
 
         if(isLogin){
-
             linearLayoutSectionPerfil.setVisibility(View.VISIBLE);
             buttonSingIn.setVisibility(View.GONE);
+
 
 
         }else{

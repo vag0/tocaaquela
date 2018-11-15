@@ -5,6 +5,8 @@ public class Usuario {
 
     private String email;
 
+    private String telefone;
+
     private String id;
 
     private String imagem;
@@ -27,6 +29,14 @@ public class Usuario {
         this.email = email;
     }
 
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
     public String getId() {
         return id;
     }
@@ -42,4 +52,5 @@ public class Usuario {
     public void setImagem(String imagem) {
         this.imagem = imagem;
     }
+
 }

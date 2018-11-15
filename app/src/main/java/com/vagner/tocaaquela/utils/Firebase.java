@@ -27,6 +27,8 @@ public class Firebase {
 
     }
 
+
+
     public static FirebaseAuth getFirebaseAuthAutenticacao(){
 
         if(firebaseAuthAutenticacao == null){

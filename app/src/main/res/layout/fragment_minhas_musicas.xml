@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/azulEscuro"
     tools:context=".fragment.MinhasMusicasFragment">
 
     <LinearLayout
-        android:background="@color/colorBranco"
+        android:background="@color/azulEscuro"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +16,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="60dp"
-            android:background="@color/colorBranco"
+            android:background="@color/azulEscuro"
             android:src="@drawable/icon_musicas"/>
 
         <TextView
@@ -25,8 +26,9 @@
             android:layout_height="wrap_content"
             android:text="Minhas Músicas"
             android:textAllCaps="true"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorBranco"
             android:textSize="30sp"
+            android:background="@color/azulEscuro"
             android:textStyle="bold" />
 
     </LinearLayout>

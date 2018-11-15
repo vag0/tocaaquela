@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:text="@string/nome_musica"
         android:textAllCaps="true"
-        android:textColor="@color/colorPrimaryText"
+        android:textColor="@color/colorVermelho"
         android:textSize="10sp"
         android:textStyle="bold" />
 
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:textColor="@color/colorPrimaryText"
+        android:textColor="@color/colorVermelho"
         android:textSize="20sp" />
 
     <TextView
@@ -34,7 +34,7 @@
         android:text="@string/autor_musica"
         android:textAllCaps="true"
         android:layout_marginTop="10dp"
-        android:textColor="@color/colorPrimaryText"
+        android:textColor="@color/colorVermelho"
         android:textSize="10sp"
         android:textStyle="bold" />
 
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:textColor="@color/colorPrimaryText"
+        android:textColor="@color/colorVermelho"
         android:textSize="20sp" />
 
 
@@ -53,7 +53,7 @@
         android:text="@string/genero_musica"
         android:textAllCaps="true"
         android:layout_marginTop="10dp"
-        android:textColor="@color/colorPrimaryText"
+        android:textColor="@color/colorVermelho"
         android:textSize="10sp"
         android:textStyle="bold" />
 
@@ -62,7 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:textColor="@color/colorPrimaryText"
+        android:textColor="@color/colorVermelho"
         android:textSize="20sp" />
 
 

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
+    android:background="@color/azulEscuro"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -19,19 +20,19 @@
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:layout_gravity="center"
-        android:background="@color/colorBranco"
+        android:background="@color/azulEscuro"
         android:src="@drawable/evento" />
 
         <TextView
+
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="EVENTOS"
             android:textStyle="bold"
             android:layout_marginLeft="73dp"
-
             android:textSize="30sp"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorVermelho"
             android:layout_gravity="center"
             />
 

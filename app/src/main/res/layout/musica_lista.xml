@@ -3,53 +3,52 @@
 
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/nome_musica_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBranco"
-        android:gravity="center"
-        android:textSize="22sp"
-        android:text="@string/nome_musica"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="7dp"
-        android:textColor="@color/colorPrimary"/>
+    android:layout_height="match_parent"
+    android:background="@color/azulEscuro">
 
     <LinearLayout
+        android:background="@drawable/edittext_arredondado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="5dp">
+        <TextView
+            android:background="@drawable/edittext_arredondado"
+
+            android:id="@+id/nome_musica_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:text="@string/nome_musica"
+            android:textColor="@color/colorBranco"
+            android:textSize="22sp" />
 
         <TextView
+            android:background="@drawable/edittext_arredondado"
+
             android:id="@+id/nome_autor_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorBranco"
             android:gravity="center"
             android:text="@string/nome_autor"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorBranco"
             android:textSize="21sp" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/genero_musica_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorBranco"
                 android:gravity="center"
                 android:text="@string/genero_musica"
-                android:textColor="@color/colorPrimary"
-                android:textSize="11sp" />
+                android:textColor="@color/colorBranco"
+                android:textSize="16sp" />
 
 
-        </LinearLayout>
 
 
     </LinearLayout>

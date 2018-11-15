@@ -41,14 +41,14 @@ public class EventoList extends ArrayAdapter<Evento> {
         TextView textViewLocalEvento = (TextView) listViewItem.findViewById(R.id.local_evento_id);
         TextView textViewDiaEvento = (TextView) listViewItem.findViewById(R.id.dia_evento_id);
         TextView textViewHoraInicio = (TextView) listViewItem.findViewById(R.id.hora_inicio_evento_id);
-        TextView textViewHoraTermino = (TextView) listViewItem.findViewById(R.id.hora_termino_evento_id);
+       // TextView textViewHoraTermino = (TextView) listViewItem.findViewById(R.id.hora_termino_evento_id);
 
         Evento evento = eventos.get(position);
 
         textViewLocalEvento.setText(evento.getLocal());
         textViewDiaEvento.setText(evento.getDiaEvento());
         textViewHoraInicio.setText(evento.getHorarioInicio());
-        textViewHoraTermino.setText(evento.getHorarioTermino());
+        //textViewHoraTermino.setText(evento.getHorarioTermino());
 
 
 

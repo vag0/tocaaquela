@@ -14,27 +14,25 @@
         <activity
             android:name=".view.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.LoginArtistaActivity"/>
-        <activity android:name=".view.CadastroArtistaActivity"/>
-
+        <activity android:name=".view.LoginArtistaActivity" />
+        <activity android:name=".view.CadastroArtistaActivity" />
         <activity android:name=".view.PesquisaMusicaActivity" />
         <activity android:name=".view.MenuArtistaActivity" />
-        <activity android:name=".LoginUsuarioActivity" />
         <activity android:name=".view.NovoEventoActivity" />
         <activity android:name=".view.NovaMusicaActivity" />
-        <activity android:name=".view.EscolhaDeMusicasActivity">
-
-
-
-
-        </activity>
+        <activity android:name=".view.EscolhaDeMusicasActivity" />
+        <activity android:name=".view.AvaliaArtistaActivity" />
+        <activity android:name=".view.SugestaoActivity" />
+        <activity android:name=".view.LoginArtistaActivityTeste" />
+        <activity android:name=".view.ProfileActivity" />
+        <activity android:name=".view.LoginActivity"></activity>
     </application>
 
 </manifest>
