@@ -15,10 +15,17 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.vagner.tocaaquela.R;
+import com.vagner.tocaaquela.model.Artist;
 
 
 public class MenuArtistaActivity extends AppCompatActivity implements View.OnClickListener{
+
+    public static final String ARTIST_NAME = "com.vagner.tocaaquela.artistid";
+    public static final String ARTIST_ID = "com.vagner.tocaaquela.artistid";
+
     private Boolean isFabOpen = false;
     FloatingActionButton fab1;
     FloatingActionButton fab2;
@@ -26,6 +33,9 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
     private Animation fab_open,fab_close,rotate_forward,rotate_backward;
 
     private FirebaseAuth firebaseAuth;
+
+    DatabaseReference databaseArtists;
+
 
     //view objects
     private TextView textViewUserName;
@@ -36,6 +46,9 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_artista);
+
+        databaseArtists = FirebaseDatabase.getInstance().getReference("artists");
+
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab1 = (FloatingActionButton) findViewById(R.id.fab1);
@@ -64,10 +77,10 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
         //initializing views
-        textViewUserName = (TextView) findViewById(R.id.textViewUserName);
+       // textViewUserName = (TextView) findViewById(R.id.textViewUserName);
 
         //displaying logged in user name
-        textViewUserName.setText("Olá "+user.getEmail());
+        //textViewUserName.setText("Olá "+user.getEmail());
 
         //adding listener to button
       //  buttonLogout.setOnClickListener(this);
@@ -100,9 +113,9 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
                 animateFAB();
                 break;
             case R.id.fab1:
-                Intent intencao = new Intent(this,NovoEventoActivity.class);
+                //starting the activity with intent
+                startActivity(new Intent(getApplicationContext(), Main2Activity.class));
 
-                startActivity(intencao);
 
                 Log.d("Raj", "Fab 1");
                 break;

@@ -24,10 +24,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.vagner.tocaaquela.model.Artist;
 import com.vagner.tocaaquela.model.Artista;
 
 public class LoginArtistaActivityTeste extends AppCompatActivity implements View.OnClickListener {
-
+        public static final String ARTIST_NAME = "com.vagner.tocaaquela.artistid";
+        public static final String ARTIST_ID = "com.vagner.tocaaquela.artistid";
         //defining view objects
         private EditText editTextEmail;
         private EditText editTextPassword;
@@ -38,8 +40,11 @@ public class LoginArtistaActivityTeste extends AppCompatActivity implements View
 
         private ProgressDialog progressDialog;
 
+        DatabaseReference databaseArtists;
 
-        //defining firebaseauth object
+
+
+    //defining firebaseauth object
         private FirebaseAuth firebaseAuth;
         DatabaseReference databaseReference;
 
@@ -47,7 +52,7 @@ public class LoginArtistaActivityTeste extends AppCompatActivity implements View
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_login_artista_teste);
-            databaseReference = FirebaseDatabase.getInstance().getReference("artistas");
+            databaseArtists = FirebaseDatabase.getInstance().getReference("artists");
 
             //initializing firebase auth object
             firebaseAuth = FirebaseAuth.getInstance();
@@ -115,7 +120,7 @@ public class LoginArtistaActivityTeste extends AppCompatActivity implements View
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             //checking if success
                             if(task.isSuccessful()){
-                                adicionaArtistas();
+                             //   addArtist();
                                 finish();
                                 startActivity(new Intent(getApplicationContext(), MenuArtistaActivity.class));
                             }else{
@@ -142,39 +147,40 @@ public class LoginArtistaActivityTeste extends AppCompatActivity implements View
 
         }
 
-        public void adicionaArtistas(){
-            String nomeArtista = editTextName.getText().toString().trim();
-            String emailArtista = editTextEmail.getText().toString().trim();
-            String senhaArtista = editTextPassword.getText().toString().trim();
 
-            if(!TextUtils.isEmpty(nomeArtista)
-                    &&(!TextUtils.isEmpty(emailArtista))
-                    && (!TextUtils.isEmpty(senhaArtista))) {
+ /*   private void addArtist() {
+        //getting the values to save
+        String name = editTextName.getText().toString().trim();
+        //String genre = spinnerGenre.getSelectedItem().toString();
 
-                    String id = databaseReference.push().getKey();
-                    Artista artista = new Artista(id,nomeArtista,emailArtista);
+        //checking if the value is provided
+        if (!TextUtils.isEmpty(name)) {
 
-                    databaseReference.child(id).setValue(artista);
+            //getting a unique id using push().getKey() method
+            //it will create a unique id and we will use it as the Primary Key for our Artist
+            String id = databaseArtists.push().getKey();
 
-                    editTextName.setText("");
-                    editTextEmail.setText("");
-                    editTextPassword.setText("");
+            //creating an Artist Object
+            Artist artist = new Artist(id, name, null);
 
+            //Saving the Artist
+            databaseArtists.child(id).setValue(artist);
 
-            }
-            else{
+            //setting edittext to blank again
+            editTextName.setText("");
 
-                Toast.makeText(LoginArtistaActivityTeste.this,"Informe os dados corretamente",Toast.LENGTH_LONG).show();
-
-
-
-            }
-
-
-
+            //displaying a success toast
+            Toast.makeText(this, "Artist added", Toast.LENGTH_LONG).show();
+        } else {
+            //if the value is not given displaying a toast
+            Toast.makeText(LoginArtistaActivityTeste.this,"Informe os dados corretamente",Toast.LENGTH_LONG).show();
         }
-
     }
+*/
+
+
+
+}
 
 
 

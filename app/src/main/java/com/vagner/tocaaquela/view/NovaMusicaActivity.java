@@ -47,7 +47,7 @@ public class NovaMusicaActivity extends AppCompatActivity {
         button_save_musica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(capturaDados()){
+                if(!capturaDados()){
 
                     SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_config), Context.MODE_PRIVATE);
                     String id = sharedPreferences.getString(getString(R.string.id), "");

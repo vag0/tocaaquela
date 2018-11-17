@@ -48,4 +48,13 @@
     <string name="fbid">your fb id</string>
 
 
+    <string-array name="genres">
+        <item>Sertanejo</item>
+        <item>Rock</item>
+        <item>MPB</item>
+        <item>POP</item>
+        <item>Forró</item>
+    </string-array>
+
+
 </resources>

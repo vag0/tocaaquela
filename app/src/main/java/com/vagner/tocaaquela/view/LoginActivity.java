@@ -21,6 +21,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.vagner.tocaaquela.model.Artist;
+import com.vagner.tocaaquela.utils.Singleton;
+
+import java.io.Serializable;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -101,7 +105,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if(task.isSuccessful()){
                             //start the profile activity
                             finish();
-                            startActivity(new Intent(getApplicationContext(), MenuArtistaActivity.class));
+                            Intent intent = new Intent(getApplicationContext(), MenuArtistaActivity.class);;
+                            startActivity(intent);
                         }
                     }
                 });

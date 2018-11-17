@@ -44,6 +44,7 @@ import com.vagner.tocaaquela.view.EscolhaDeMusicasActivity;
 import com.vagner.tocaaquela.view.LoginActivity;
 import com.vagner.tocaaquela.view.LoginArtistaActivity;
 import com.vagner.tocaaquela.view.LoginArtistaActivityTeste;
+import com.vagner.tocaaquela.view.Main2Activity;
 import com.vagner.tocaaquela.view.MenuArtistaActivity;
 
 import java.util.zip.Inflater;
@@ -84,7 +85,7 @@ public class TesteFragment extends Fragment implements GoogleApiClient.OnConnect
                 context = null;
                 if(user != null) {
                     Sugestao sugestao = new Sugestao();
-                    sugestao.setMensagem("Evidẽncias");
+                    sugestao.setMensagem("Evidências");
 
                     // sugestao.setIdDoMusico(idDoMusico);
                     sugestao.setIdDoUsuario(user.getUid());
@@ -258,7 +259,7 @@ public class TesteFragment extends Fragment implements GoogleApiClient.OnConnect
 
         if (id == R.id.action_sou_artista) {
            // if(FirebaseAuth.getInstance().getCurrentUser().getEmail().equals("ti.vagner@gmail.com")){
-               Intent intent = new Intent(getActivity(),LoginArtistaActivityTeste.class);
+               Intent intent = new Intent(getActivity(),MenuArtistaActivity.class);
                startActivity(intent);
            // }
             return true;

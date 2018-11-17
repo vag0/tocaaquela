@@ -19,7 +19,7 @@ public class Artista implements Serializable{
 
     private String confirmaSenha;
 
-    
+
     public Artista() {
 
     }
