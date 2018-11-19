@@ -16,9 +16,56 @@ public class Voto {
 
     private Usuario usuario;
 
+    private String trackName;
+
+    private String nomeUsuario;
+
     private int quantidade;
 
-    DatabaseReference databaseMusicas;
+
+    private Track track;
+    private Musica musica;
+
+
+
+    public Voto(String idVoto, String trackName, String nomeUsuario) {
+        this.idVoto = idVoto;
+        this.trackName = trackName;
+        this.nomeUsuario = nomeUsuario;
+
+    }
+
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
+
+    public String getTrackName() {
+        return trackName;
+    }
+
+    public void setTrackName(String trackName) {
+        this.trackName = trackName;
+    }
+
+    public Musica getMusica() {
+        return musica;
+    }
+
+    public void setMusica(Musica musica) {
+        this.musica = musica;
+    }
+
+    public Track getTrack() {
+        return track;
+    }
+
+    public void setTrack(Track track) {
+        this.track = track;
+    }
 
     public Voto() {
     }

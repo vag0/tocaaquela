@@ -49,8 +49,7 @@ public class ArtistActivity extends AppCompatActivity {
         * but inside the node track we are creating a new child with the artist id
         * and inside that node we will store all the tracks with unique ids
         * */
-        databaseTracks = FirebaseDatabase.getInstance().getReference("tracks");
-               // child(intent.getStringExtra(Main2Activity.ARTIST_ID));
+        databaseTracks = FirebaseDatabase.getInstance().getReference("tracks").child(intent.getStringExtra(Main2Activity.ARTIST_ID));
 
         buttonAddTrack = (Button) findViewById(R.id.buttonAddTrack);
         editTextTrackName = (EditText) findViewById(R.id.editTextName);

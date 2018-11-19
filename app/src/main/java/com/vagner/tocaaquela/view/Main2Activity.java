@@ -112,7 +112,7 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Artist artist = artists.get(i);
-                showUpdateDeleteDialog(artist.getArtistId(), artist.getArtistLocalEvent());
+                showUpdateDeleteDialog(artist.getArtistId(), artist.getArtistLocalEvent(),artist.getArtistDiaEvent(),artist.getArtistGenre(),artist.getArtistNameEmail(),artist.getArtistHorario());
                 return true;
             }
         });
@@ -120,7 +120,7 @@ public class Main2Activity extends AppCompatActivity {
 
     }
 
-    private void showUpdateDeleteDialog(final String artistId, String artistName) {
+    private void showUpdateDeleteDialog(final String artistId, String artistLocal,String artistDia, String artistGenre,String nameEmail, String horario) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -134,7 +134,9 @@ public class Main2Activity extends AppCompatActivity {
         final Button buttonUpdate = (Button) dialogView.findViewById(R.id.buttonUpdateArtist);
         final Button buttonDelete = (Button) dialogView.findViewById(R.id.buttonDeleteArtist);
 
-        dialogBuilder.setTitle(artistName);
+        dialogBuilder.setTitle(artistLocal);
+        dialogBuilder.setTitle(artistLocal);
+        dialogBuilder.setTitle(artistLocal);
         final AlertDialog b = dialogBuilder.create();
         b.show();
 

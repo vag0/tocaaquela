@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.vagner.tocaaquela.R;
 import com.vagner.tocaaquela.fragment.EventoFragment;
+import com.vagner.tocaaquela.model.Artist;
 import com.vagner.tocaaquela.model.Evento;
 import com.vagner.tocaaquela.model.Musica;
 import com.vagner.tocaaquela.model.Track;
@@ -37,7 +38,9 @@ import com.vagner.tocaaquela.utils.TrackList;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EscolhaDeMusicasActivity extends AppCompatActivity {
     ListView listViewEventos;
@@ -46,8 +49,8 @@ public class EscolhaDeMusicasActivity extends AppCompatActivity {
     List<Evento> eventos;
     private Voto voto;
     Context context;
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
+
+    private FirebaseAuth firebaseAuth;
 
 
 
@@ -60,13 +63,16 @@ public class EscolhaDeMusicasActivity extends AppCompatActivity {
     int cont = 0;
 
     DatabaseReference databaseEventos;
-    DatabaseReference databaseMusicas;
+    DatabaseReference databaseVotos;
 
     DatabaseReference databaseTracks;
+
+    DatabaseReference databaseContaVotos;
 
     TextView textViewRating, textViewArtist;
 
     List<Track> tracks;
+    List<Voto> votos;
 
 
     @Override
@@ -82,6 +88,9 @@ public class EscolhaDeMusicasActivity extends AppCompatActivity {
 
         databaseTracks = FirebaseDatabase.getInstance().getReference("tracks").child(getIntent().getStringExtra(EventoFragment.ARTIST_ID));
 
+        databaseVotos = FirebaseDatabase.getInstance().getReference("votos").child(getIntent().getStringExtra(EventoFragment.ARTIST_ID));
+
+        databaseContaVotos = FirebaseDatabase.getInstance().getReference("votos");
 
         listViewEventos = findViewById(R.id.listViewMusicas_id);
         listViewTracks = findViewById(R.id.listViewMusicas_id);
@@ -103,16 +112,42 @@ public class EscolhaDeMusicasActivity extends AppCompatActivity {
     }
 
     private void escolhaDeMusica() {
-        myRef =  FirebaseDatabase.getInstance().getReference("musicas");
 
 
         listViewMusicas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             int total = 0;
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                firebaseAuth = FirebaseAuth.getInstance();
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                String emailUser = user.getEmail();
+
+                Track track ;
+
+                track = tracks.get(i);
+
+                String nome = track.getTrackName();
+
+
+                String id = databaseVotos.push().getKey();
+
+                //creating an Artist Object
+
+
+
+                Voto voto = new Voto(id,nome, emailUser);
+
+                //Saving the Artist
+                databaseVotos.child(id).setValue(voto);
+
+
+
                 cont = cont + 1;
                 Toast.makeText(getBaseContext(), " Seus votos foram "+cont, Toast.LENGTH_SHORT).show();
-                musicas.get(i).setTotalDeVotos(0);
+
+
 
                 if (cont >= limiteDeVoto) {
                     Intent intent = new Intent(EscolhaDeMusicasActivity.this, MainActivity.class);
@@ -152,47 +187,6 @@ public class EscolhaDeMusicasActivity extends AppCompatActivity {
 
             }
         });
-      /*  final ValueEventListener valueEventListener = databaseMusicas.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                try {
-                    musicas.clear();
-
-
-                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                        // Usuario usuario = Singleton.getInstacia().getUsuario();
-
-
-                        Musica musica = postSnapshot.getValue(Musica.class);
-                        //  evento(postSnapshot.getKey());
-
-                        // if(consulta.getEmailUsuario().equals(usuario.getEmail())){
-                        musicas.add(musica);
-                        // }
-
-                    }
-                    //Collections.reverse(eventos);
-
-                    MusicaList musicaAdapter = new MusicaList(EscolhaDeMusicasActivity.this, musicas);
-
-
-                    listViewMusicas.setAdapter((ListAdapter) musicaAdapter);
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        */
     }
 
     public void onStart() {
@@ -230,6 +224,13 @@ public class EscolhaDeMusicasActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
+
+
+
 
 
 }
