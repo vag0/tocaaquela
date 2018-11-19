@@ -5,12 +5,31 @@
     android:orientation="vertical"
     android:padding="@dimen/activity_horizontal_margin">
 
+    <EditText
+
+        android:id="@+id/editTextLocalEvent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:hint="Digite o Local" />
+    <EditText
+        android:id="@+id/editTextDiaEvent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:hint="Digite o Dia" />
 
     <EditText
         android:id="@+id/editTextName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Digite o nome " />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:hint="Digite o Horario" />
+
 
     <Spinner
         android:id="@+id/spinnerGenres"

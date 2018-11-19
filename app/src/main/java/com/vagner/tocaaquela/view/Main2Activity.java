@@ -128,8 +128,8 @@ public class Main2Activity extends AppCompatActivity {
         dialogBuilder.setView(dialogView);
 
         final EditText editTextHorario = (EditText) dialogView.findViewById(R.id.editTextName);
-       // final EditText editTextDia = (EditText) dialogView.findViewById(R.id.editTextDiaEvent);
-      //  final EditText editTextLocal = (EditText) dialogView.findViewById(R.id.editTextLocalEvent);
+        final EditText editTextDia = (EditText) dialogView.findViewById(R.id.editTextDiaEvent);
+        final EditText editTextLocal = (EditText) dialogView.findViewById(R.id.editTextLocalEvent);
         final Spinner spinnerGenre = (Spinner) dialogView.findViewById(R.id.spinnerGenres);
         final Button buttonUpdate = (Button) dialogView.findViewById(R.id.buttonUpdateArtist);
         final Button buttonDelete = (Button) dialogView.findViewById(R.id.buttonDeleteArtist);
@@ -146,12 +146,13 @@ public class Main2Activity extends AppCompatActivity {
 
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
-
-                String nameEmail = user.getEmail();
-                String local = editTextLocal.getText().toString().trim();
-                String dia = editTextDia.getText().toString().trim();
                 String horario = editTextHorario.getText().toString().trim();
+                String nameEmail = user.getEmail();
                 String genre = spinnerGenre.getSelectedItem().toString();
+                String dia = editTextDia.getText().toString().trim();
+                String local = editTextLocal.getText().toString().trim();
+
+
                 if (!TextUtils.isEmpty(local)) {
                     updateArtist(artistId, local, dia,genre,nameEmail, horario);
                     b.dismiss();
