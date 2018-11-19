@@ -86,6 +86,8 @@ public class EscolhaDeMusicasActivity extends AppCompatActivity {
         listViewEventos = findViewById(R.id.listViewMusicas_id);
         listViewTracks = findViewById(R.id.listViewMusicas_id);
 
+        listViewMusicas = findViewById(R.id.listViewMusicas_id);
+
         eventos = new ArrayList<>();
         musicas = new ArrayList<>();
 
@@ -104,7 +106,7 @@ public class EscolhaDeMusicasActivity extends AppCompatActivity {
         myRef =  FirebaseDatabase.getInstance().getReference("musicas");
 
 
-        listViewEventos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewMusicas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             int total = 0;
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -141,8 +143,8 @@ public class EscolhaDeMusicasActivity extends AppCompatActivity {
                     Track track = postSnapshot.getValue(Track.class);
                     tracks.add(track);
                 }
-                TrackList trackListAdapter = new TrackList(EscolhaDeMusicasActivity.this, tracks);
-                listViewTracks.setAdapter(trackListAdapter);
+                MusicaList musicaListAdapter = new MusicaList(EscolhaDeMusicasActivity.this, tracks);
+                listViewMusicas.setAdapter(musicaListAdapter);
             }
 
             @Override

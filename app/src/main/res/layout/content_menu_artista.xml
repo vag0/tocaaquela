@@ -8,10 +8,6 @@
     tools:context=".view.MenuArtistaActivity"
     tools:showIn="@layout/activity_menu_artista">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        />
+
 
 </LinearLayout>

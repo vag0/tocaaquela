@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.vagner.tocaaquela.R;
 import com.vagner.tocaaquela.model.Musica;
+import com.vagner.tocaaquela.model.Track;
 import com.vagner.tocaaquela.utils.MusicaList;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class MinhasMusicasFragment extends Fragment {
     ListView listViewMinhasMusicas;
 
     List<Musica> musicas;
-
+    List<Track> tracks;
     DatabaseReference databaseMusicas;
 
 
@@ -54,11 +55,13 @@ public class MinhasMusicasFragment extends Fragment {
 
 
         musicas = new ArrayList<>();
+        tracks = new ArrayList<>();
 
         listViewMinhasMusicas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Musica musica = musicas.get(i);
+                //Musica musica = musicas.get(i);
+                Track track = tracks.get(i);
 
                 // showUpdateDeleteDialog(consulta.getIdConsulta(), consulta.getNomeEspecialista());
                 return true;
@@ -76,23 +79,23 @@ public class MinhasMusicasFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 try{
-                    musicas.clear();
+                    tracks.clear();
 
 
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
 
-                        Musica musica = postSnapshot.getValue(Musica.class);
+                        Track track = postSnapshot.getValue(Track.class);
                         //musica.setIdConsulta(postSnapshot.getKey());
                         //if(co.getEmailEspecialista().equals(especialista.getEmail())){
 
-                        musicas.add(musica);
+                        tracks.add(track);
                         // }
 
                     }
 
 
-                    MusicaList musicaAdapter = new MusicaList(getActivity(),musicas);
+                    MusicaList musicaAdapter = new MusicaList(getActivity(),tracks);
 
                     listViewMinhasMusicas.setAdapter(musicaAdapter);
                 }catch (Exception e){

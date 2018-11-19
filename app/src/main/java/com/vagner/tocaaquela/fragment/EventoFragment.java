@@ -81,7 +81,7 @@ public class EventoFragment extends Fragment {
 
                 // Evento evento = eventos.get(i);
                // Intent intencao = new Intent(getActivity(), EscolhaDeMusicasActivity.class);
-                startActivity(intent);
+               startActivity(intent);
                 // showUpdateDeleteDialog(consulta.getIdConsulta(), consulta.getNomeEspecialista());
 
             }
@@ -110,10 +110,17 @@ public class EventoFragment extends Fragment {
                     artists.add(artist);
                 }
 
-                //creating adapter
-                ArtistList artistAdapter = new ArtistList(getActivity(), artists);
-                //attaching adapter to the listview
-                listViewEventos.setAdapter(artistAdapter);
+
+                if (getActivity()!=null){
+
+                    EventoList   eventoAdapter = new EventoList(getActivity(), artists);
+                    listViewEventos.setAdapter(eventoAdapter);
+
+                }
+
+
+
+
             }
 
             @Override

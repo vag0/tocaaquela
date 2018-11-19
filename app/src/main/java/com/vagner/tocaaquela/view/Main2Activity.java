@@ -262,6 +262,8 @@ public class Main2Activity extends AppCompatActivity {
             //setting edittext to blank again
             editTextHorario.setText("");
             editTextLocal.setText("");
+            editTextDia.setText("");
+
 
             //displaying a success toast
             Toast.makeText(this, "Evento  Criado", Toast.LENGTH_LONG).show();

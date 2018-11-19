@@ -38,7 +38,7 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
 
 
     //view objects
-    private TextView textViewUserName;
+    private TextView textViewUserEmail;
     private Button buttonLogout;
 
 
@@ -46,6 +46,7 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_artista);
+        firebaseAuth = FirebaseAuth.getInstance();
 
         databaseArtists = FirebaseDatabase.getInstance().getReference("artists");
 
@@ -62,7 +63,6 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
         fab2.setOnClickListener(this);
 
         //initializing firebase authentication object
-        firebaseAuth = FirebaseAuth.getInstance();
 
         //if the user is not logged in
         //that means current user will return null
@@ -72,9 +72,15 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
             //starting login activity
             startActivity(new Intent(this, LoginArtistaActivityTeste.class));
         }
+        else {
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            textViewUserEmail = (TextView) findViewById(R.id.textViewUserEmailMenu);
+            textViewUserEmail.setText(" Olá "+user.getEmail());
+        }
+
 
         //getting current user
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+      //  FirebaseUser user = firebaseAuth.getCurrentUser();
 
         //initializing views
        // textViewUserName = (TextView) findViewById(R.id.textViewUserName);

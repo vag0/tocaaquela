@@ -9,20 +9,21 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.vagner.tocaaquela.R;
+import com.vagner.tocaaquela.model.Artist;
 import com.vagner.tocaaquela.model.Evento;
 
 import java.util.List;
 
 import static com.vagner.tocaaquela.R.layout.evento_lista;
 
-public class EventoList extends ArrayAdapter<Evento> {
+public class EventoList extends ArrayAdapter<Artist> {
     private Activity context;
-    List<Evento> eventos;
+    List<Artist> artists;
 
-    public EventoList(Activity context, List<Evento> eventos) {
-        super(context,R.layout.evento_lista, eventos);
+    public EventoList(Activity context, List<Artist> artists) {
+        super(context,R.layout.evento_lista, artists);
         this.context = context;
-        this.eventos = eventos;
+        this.artists = artists;
     }
 
 
@@ -43,11 +44,11 @@ public class EventoList extends ArrayAdapter<Evento> {
         TextView textViewHoraInicio = (TextView) listViewItem.findViewById(R.id.hora_inicio_evento_id);
        // TextView textViewHoraTermino = (TextView) listViewItem.findViewById(R.id.hora_termino_evento_id);
 
-        Evento evento = eventos.get(position);
+        Artist artist = artists.get(position);
 
-        textViewLocalEvento.setText(evento.getLocal());
-        textViewDiaEvento.setText(evento.getDiaEvento());
-        textViewHoraInicio.setText(evento.getHorarioInicio());
+        textViewLocalEvento.setText(artist.getArtistLocalEvent());
+        textViewDiaEvento.setText(artist.getArtistDiaEvent());
+        textViewHoraInicio.setText(artist.getArtistHorario());
         //textViewHoraTermino.setText(evento.getHorarioTermino());
 
 
