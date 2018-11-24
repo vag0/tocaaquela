@@ -1,14 +1,11 @@
 package com.vagner.tocaaquela.fragment;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -37,22 +34,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.vagner.tocaaquela.R;
 import com.vagner.tocaaquela.model.Sugestao;
-import com.vagner.tocaaquela.utils.Firebase;
-import com.vagner.tocaaquela.view.AvaliaArtistaActivity;
-import com.vagner.tocaaquela.view.CadastroArtistaActivity;
-import com.vagner.tocaaquela.view.EscolhaDeMusicasActivity;
-import com.vagner.tocaaquela.view.LoginActivity;
-import com.vagner.tocaaquela.view.LoginArtistaActivity;
-import com.vagner.tocaaquela.view.LoginArtistaActivityTeste;
-import com.vagner.tocaaquela.view.Main2Activity;
 import com.vagner.tocaaquela.view.MenuArtistaActivity;
-
-import java.util.zip.Inflater;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TesteFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener{
+public class PerfilUserFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener{
 
     private static int RC_SIGN_IN = 0;
     private static String TAG = "MAIN_ACTIVITY";
@@ -75,7 +62,7 @@ public class TesteFragment extends Fragment implements GoogleApiClient.OnConnect
 
         View view;
 
-        view = inflater.inflate(R.layout.fragment_teste, container, false);
+        view = inflater.inflate(R.layout.frament_user_perfil, container, false);
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {

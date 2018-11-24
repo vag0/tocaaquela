@@ -1,6 +1,5 @@
 package com.vagner.tocaaquela.utils;
 
-
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +11,6 @@ import com.vagner.tocaaquela.R;
 import com.vagner.tocaaquela.model.Track;
 
 import java.util.List;
-
-
 
 public class TrackList extends ArrayAdapter<Track> {
     private Activity context;

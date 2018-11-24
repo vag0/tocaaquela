@@ -14,14 +14,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.vagner.tocaaquela.R;
-import com.vagner.tocaaquela.model.Event;
 import com.vagner.tocaaquela.model.Evento;
-import com.vagner.tocaaquela.model.Track;
 
 public class NovoEventoActivity extends AppCompatActivity {
 
@@ -69,7 +65,6 @@ public class NovoEventoActivity extends AppCompatActivity {
                 capturaDados();
                if(!capturaDados()){
 
-                    //DatabaseReference myRef = database.getReference("musicas");
 
                     SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_config), Context.MODE_PRIVATE);
                     String id = sharedPreferences.getString(getString(R.string.id), "");
@@ -116,8 +111,7 @@ public class NovoEventoActivity extends AppCompatActivity {
 
         if (!TextUtils.isEmpty(localEvento)) {
             String id  = databaseEvents.push().getKey();
-            //Event event = new Event(id, localEvento, diaEvento,horarioInicio);
-           // databaseEvents.child(id).setValue(event);
+
             Toast.makeText(this, "Evento salvo", Toast.LENGTH_LONG).show();
             editTextLocal.setText("");
         }
@@ -131,11 +125,9 @@ public class NovoEventoActivity extends AppCompatActivity {
         String diaEvento = editTextDia.getText().toString();
         String horarioInicio = editHorarioInicio.getText().toString();
         String horarioTermino = editHorarioTermino.getText().toString();
-       // int rating = seekBarRating.getProgress();
         if (!TextUtils.isEmpty(localEvento)) {
             String id  = databaseEvents.push().getKey();
-            //Event event = new Event(id, localEvento, diaEvento,horarioInicio);
-           // databaseEvents.child(id).setValue(event);
+
             Toast.makeText(this, "Track saved", Toast.LENGTH_LONG).show();
             editTextLocal.setText("");
             editTextDia.setText("");

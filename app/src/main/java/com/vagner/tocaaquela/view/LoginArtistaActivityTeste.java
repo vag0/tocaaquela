@@ -11,8 +11,6 @@ import com.vagner.tocaaquela.R;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -24,13 +22,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.vagner.tocaaquela.model.Artist;
-import com.vagner.tocaaquela.model.Artista;
 
 public class LoginArtistaActivityTeste extends AppCompatActivity implements View.OnClickListener {
         public static final String ARTIST_NAME = "com.vagner.tocaaquela.artistid";
         public static final String ARTIST_ID = "com.vagner.tocaaquela.artistid";
-        //defining view objects
+
         private EditText editTextEmail;
         private EditText editTextPassword;
         private EditText editTextName;
@@ -44,7 +40,6 @@ public class LoginArtistaActivityTeste extends AppCompatActivity implements View
 
 
 
-    //defining firebaseauth object
         private FirebaseAuth firebaseAuth;
         DatabaseReference databaseReference;
 
@@ -52,22 +47,20 @@ public class LoginArtistaActivityTeste extends AppCompatActivity implements View
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_login_artista_teste);
-            databaseArtists = FirebaseDatabase.getInstance().getReference("artists");
+            databaseArtists = FirebaseDatabase.getInstance().getReference("events");
 
-            //initializing firebase auth object
+
             firebaseAuth = FirebaseAuth.getInstance();
 
-            //if getCurrentUser does not returns null
             if(firebaseAuth.getCurrentUser() != null){
-                //that means user is already logged in
-                //so close this activity
+
                 finish();
 
-                //and open profile activity
+
                 startActivity(new Intent(getApplicationContext(), MenuArtistaActivity.class));
             }
 
-            //initializing views
+
             editTextName = (EditText)findViewById(R.id.editTextName_login_artista_teste);
             editTextEmail = (EditText) findViewById(R.id.editTextEmail_login_artista_teste);
             editTextPassword = (EditText) findViewById(R.id.editTextPassword_login_artista_teste);
@@ -78,20 +71,20 @@ public class LoginArtistaActivityTeste extends AppCompatActivity implements View
 
             progressDialog = new ProgressDialog(this);
 
-            //attaching listener to button
+
             buttonSignup.setOnClickListener(this);
             textViewSignin.setOnClickListener(this);
         }
 
         private void registerUser(){
 
-            //getting email and password from edit texts
+
             String name = editTextName.getText().toString().trim();
             String email = editTextEmail.getText().toString().trim();
             String password  = editTextPassword.getText().toString().trim();
 
 
-            //checking if email and passwords are empty
+
             if(TextUtils.isEmpty(name)){
                 Toast.makeText(this,"Por favor digite seu nome",Toast.LENGTH_LONG).show();
                 return;
@@ -107,24 +100,21 @@ public class LoginArtistaActivityTeste extends AppCompatActivity implements View
                 return;
             }
 
-            //if the email and password are not empty
-            //displaying a progress dialog
+
 
             progressDialog.setMessage("Aguarde por favor...");
             progressDialog.show();
 
-            //creating a new user
+
             firebaseAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            //checking if success
+
                             if(task.isSuccessful()){
-                             //   addArtist();
                                 finish();
                                 startActivity(new Intent(getApplicationContext(), MenuArtistaActivity.class));
                             }else{
-                                //display some message here
                                 Toast.makeText(LoginArtistaActivityTeste.this,"Deu errado",Toast.LENGTH_LONG).show();
                             }
                             progressDialog.dismiss();
@@ -141,42 +131,11 @@ public class LoginArtistaActivityTeste extends AppCompatActivity implements View
             }
 
             if(view == textViewSignin){
-                //open login activity when user taps on the already registered textview
                 startActivity(new Intent(this, LoginActivity.class));
             }
 
         }
 
-
- /*   private void addArtist() {
-        //getting the values to save
-        String name = editTextName.getText().toString().trim();
-        //String genre = spinnerGenre.getSelectedItem().toString();
-
-        //checking if the value is provided
-        if (!TextUtils.isEmpty(name)) {
-
-            //getting a unique id using push().getKey() method
-            //it will create a unique id and we will use it as the Primary Key for our Artist
-            String id = databaseArtists.push().getKey();
-
-            //creating an Artist Object
-            Artist artist = new Artist(id, name, null);
-
-            //Saving the Artist
-            databaseArtists.child(id).setValue(artist);
-
-            //setting edittext to blank again
-            editTextName.setText("");
-
-            //displaying a success toast
-            Toast.makeText(this, "Artist added", Toast.LENGTH_LONG).show();
-        } else {
-            //if the value is not given displaying a toast
-            Toast.makeText(LoginArtistaActivityTeste.this,"Informe os dados corretamente",Toast.LENGTH_LONG).show();
-        }
-    }
-*/
 
 
 

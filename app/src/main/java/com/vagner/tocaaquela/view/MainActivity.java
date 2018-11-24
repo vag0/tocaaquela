@@ -1,5 +1,6 @@
 package com.vagner.tocaaquela.view;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +10,7 @@ import android.view.MenuItem;
 import com.vagner.tocaaquela.R;
 import com.vagner.tocaaquela.fragment.EventoFragment;
 import com.vagner.tocaaquela.fragment.MinhasMusicasFragment;
-import com.vagner.tocaaquela.fragment.PerfilFragment;
-import com.vagner.tocaaquela.fragment.TesteFragment;
+import com.vagner.tocaaquela.fragment.PerfilUserFragment;
 import com.vagner.tocaaquela.utils.BottomNavigationViewHelper;
 import com.vagner.tocaaquela.utils.FragmentoUtils;
 
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
                     FragmentoUtils.replace(MainActivity.this, new MinhasMusicasFragment());
                     return true;
                 case R.id.navigation_perfil:
-                    FragmentoUtils.replace(MainActivity.this, new TesteFragment());
+                    FragmentoUtils.replace(MainActivity.this, new PerfilUserFragment());
                     return true;
 
             }
@@ -50,7 +50,10 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
 
-        FragmentoUtils.replace(MainActivity.this, new EventoFragment());
+        //FragmentoUtils.replace(MainActivity.this, new EventoFragment());
+
+        Intent intent = new Intent(this,EventActivity.class);
+        startActivity(intent);
     }
 
 }

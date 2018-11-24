@@ -18,6 +18,7 @@ import com.vagner.tocaaquela.R;
 import com.vagner.tocaaquela.model.Musica;
 import com.vagner.tocaaquela.model.Track;
 import com.vagner.tocaaquela.utils.MusicaList;
+import com.vagner.tocaaquela.utils.Singleton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class MinhasMusicasFragment extends Fragment {
 
     List<Musica> musicas;
     List<Track> tracks;
-    DatabaseReference databaseMusicas;
+    DatabaseReference databaseVotos;
 
 
 
@@ -46,7 +47,7 @@ public class MinhasMusicasFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_minhas_musicas, container, false);
 
-        databaseMusicas = FirebaseDatabase.getInstance().getReference("musicas");
+        databaseVotos = FirebaseDatabase.getInstance().getReference("votos").child(Singleton.getInstacia().getEvent().getArtistLocalEvent());
 
 
 
@@ -72,48 +73,31 @@ public class MinhasMusicasFragment extends Fragment {
 
         return view;
     }
-
-    public void buscaMusicas(){
-        final ValueEventListener valueEventListener = databaseMusicas.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                try{
-                    tracks.clear();
-
-
-                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-
-
-                        Track track = postSnapshot.getValue(Track.class);
-                        //musica.setIdConsulta(postSnapshot.getKey());
-                        //if(co.getEmailEspecialista().equals(especialista.getEmail())){
-
-                        tracks.add(track);
-                        // }
-
-                    }
-
-
-                    MusicaList musicaAdapter = new MusicaList(getActivity(),tracks);
-
-                    listViewMinhasMusicas.setAdapter(musicaAdapter);
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-
-
+//firebase.database().ref('receitas').orderByChild('tipo_nome').startAt('true_').endAt('true_\uf8ff');
+public void buscaMusicas() {
+    databaseVotos.addValueEventListener(new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            tracks.clear();
+            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                Track track = postSnapshot.getValue(Track.class);
+                tracks.add(track);
             }
+            MusicaList musicaListAdapter = new MusicaList(getActivity(), tracks);
+            listViewMinhasMusicas.setAdapter(musicaListAdapter);
+        }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
-    }
+        }
+    });
+}
+
     public void onStart() {
         super.onStart();
-
+        if(Singleton.getInstacia()==null){
+        }
         buscaMusicas();
     }
 

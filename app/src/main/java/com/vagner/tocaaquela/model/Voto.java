@@ -22,16 +22,19 @@ public class Voto {
 
     private int quantidade;
 
+    private String nomeEvento;
+
 
     private Track track;
     private Musica musica;
 
 
 
-    public Voto(String idVoto, String trackName, String nomeUsuario) {
+    public Voto(String idVoto, String trackName, String nomeUsuario, String nomeEvento) {
         this.idVoto = idVoto;
         this.trackName = trackName;
         this.nomeUsuario = nomeUsuario;
+        this.nomeEvento = nomeEvento;
 
     }
 
@@ -94,4 +97,7 @@ public class Voto {
         this.quantidade = quantidade;
     }
 
+    public String getNomeEvento() {
+        return nomeEvento;
+    }
 }

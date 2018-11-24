@@ -1,67 +1,55 @@
 package com.vagner.tocaaquela.model;
 
-public class Event {
-    private String local;
+import com.google.firebase.database.IgnoreExtraProperties;
 
-    private String id;
+import java.io.Serializable;
 
-    private String diaEvento;
+/**
+ * Created by Belal on 2/26/2017.
+ */
+@IgnoreExtraProperties
+public class Event implements Serializable {
+    private String artistId;
+    private String artistLocalEvent;
+    private String artistDiaEvent;
+    private String artistGenre;
+    private String artistNameEmail;
+    private String artistHorario;
 
-    private String horarioInicio;
-
-    private String genero;
-
-    private int rating;
-
-    public Event(){}
-
-    public Event( String id, String local,String diaEvento,String genero, int rating,String horarioInicio) {
-
-        this.local = local;
-        this.id = id;
-        this.diaEvento = diaEvento;
-        this.genero = genero;
-        this.rating = rating;
-        this.horarioInicio = horarioInicio;
+    public Event(){
+        //this constructor is required
     }
 
-    public int getRating() {
-        return rating;
+    public Event(String artistId, String artistLocalEvent, String artistDiaEvent, String artistGenre, String artistNameEmail, String artistHorario) {
+        this.artistId = artistId;
+        this.artistLocalEvent = artistLocalEvent;
+        this.artistDiaEvent = artistDiaEvent;
+        this.artistGenre = artistGenre;
+        this.artistNameEmail = artistNameEmail;
+        this.artistHorario = artistHorario;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
+    public String getArtistId() {
+        return artistId;
     }
 
-    public String getLocal() {
-        return local;
+    public String getArtistLocalEvent() {
+        return artistLocalEvent;
     }
 
-    public void setLocal(String local) {
-        this.local = local;
+    public String getArtistDiaEvent() {
+        return artistDiaEvent;
     }
 
-    public String getId() {
-        return id;
+    public String getArtistGenre() {
+        return artistGenre;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getArtistNameEmail() {
+        return artistNameEmail;
     }
 
-    public String getDiaEvento() {
-        return diaEvento;
-    }
-
-    public void setDiaEvento(String diaEvento) {
-        this.diaEvento = diaEvento;
-    }
-
-    public String getHorarioInicio() {
-        return horarioInicio;
-    }
-
-    public void setHorarioInicio(String horarioInicio) {
-        this.horarioInicio = horarioInicio;
+    public String getArtistHorario() {
+        return artistHorario;
     }
 }

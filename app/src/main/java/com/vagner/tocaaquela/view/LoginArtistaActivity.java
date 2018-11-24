@@ -26,7 +26,7 @@ import com.vagner.tocaaquela.utils.Firebase;
 
 public class LoginArtistaActivity extends AppCompatActivity {
 
-    //private LoginButton loginButtonFacebook;
+
 
     private FirebaseAuth firebaseAuth;
 
@@ -49,8 +49,7 @@ public class LoginArtistaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //FacebookSdk.sdkInitialize(getApplicationContext());
-      //  AppEventsLogger.activateApp(this);
+
         setContentView(R.layout.activity_login_artista);
         entrarArtista();
 
@@ -58,7 +57,6 @@ public class LoginArtistaActivity extends AppCompatActivity {
 
         inicializarComponentes();
         inicializarFirebaseCallback();
-        //clickButton();
         buttonEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,28 +83,7 @@ public class LoginArtistaActivity extends AppCompatActivity {
         });
 
     }
-/*
-    private void clickButton() {
-        loginButtonFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
 
-                firebaseLogin(loginResult.getAccessToken());
-            }
-
-            @Override
-            public void onCancel() {
-                alert("Operação Cancelada");
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                alert("Erro como login");
-
-            }
-        });
-    }*/
 
     private void firebaseLogin(AccessToken accessToken) {
         AuthCredential credential = FacebookAuthProvider.getCredential(accessToken.getToken());
@@ -139,8 +116,7 @@ public class LoginArtistaActivity extends AppCompatActivity {
 
 
     public void inicializarComponentes() {
-       // loginButtonFacebook = (LoginButton) findViewById(R.id.login_button_facebook);
-//        loginButtonFacebook.setReadPermissions("email","public_profile");
+
         editTextEmail = findViewById(R.id.edit_email_login_artista);
         editTextSenha = findViewById(R.id.edit_senha_login_artista);
         buttonEntrar = findViewById(R.id.button_login_artista);

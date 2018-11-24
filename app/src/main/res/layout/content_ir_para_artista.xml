@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".fragment.TesteFragment"
-    tools:showIn="@layout/fragment_teste">
+    tools:context=".fragment.PerfilUserFragment"
+    tools:showIn="@layout/frament_user_perfil">
 
 
 </LinearLayout>

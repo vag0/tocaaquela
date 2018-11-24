@@ -31,8 +31,8 @@ public class EventList {
         TextView textViewGenre = (TextView) listViewItem.findViewById(R.id.textViewGenre);
 
         Event event = events.get(position);
-        textViewName.setText(event.getLocal());
-        textViewGenre.setText(event.getDiaEvento());
+        textViewName.setText(event.getArtistLocalEvent());
+        textViewGenre.setText(event.getArtistGenre());
 
         return listViewItem;
     }

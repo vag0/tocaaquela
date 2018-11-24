@@ -1,12 +1,12 @@
 package com.vagner.tocaaquela.utils;
 
-import com.vagner.tocaaquela.model.Artist;
+import com.vagner.tocaaquela.model.Event;
 
 public class Singleton {
 
     private static Singleton instancia;
 
-    private Artist artist;
+    private Event event;
 
     public Singleton(){}
 
@@ -19,15 +19,15 @@ public class Singleton {
         return instancia;
     }
 
-    public void salva(Artist artist) {
-        this.artist = artist;
+    public void salva(Event event) {
+        this.event = event;
     }
 
-    public Artist getArtist() {
-        return artist;
+    public Event getEvent() {
+        return event;
     }
 
-    public void setArtist(Artist artist) {
-        this.artist = artist;
+    public void setEvent(Event event) {
+        this.event = event;
     }
 }

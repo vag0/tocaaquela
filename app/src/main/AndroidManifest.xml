@@ -34,7 +34,7 @@
         <activity android:name=".view.ProfileActivity" />
         <activity android:name=".view.LoginActivity" />
         <activity android:name=".view.ArtistActivity" />
-        <activity android:name=".view.Main2Activity"></activity>
+        <activity android:name=".view.EventActivity" />
     </application>
 
 </manifest>

@@ -8,24 +8,57 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.vagner.tocaaquela.R;
+import com.vagner.tocaaquela.fragment.EventoFragment;
+import com.vagner.tocaaquela.utils.Singleton;
 
 public class AvaliaArtistaActivity extends AppCompatActivity {
 
     private  static Button button_save_avaliacao;
     private  static TextView textView_avaliacao;
     private  static RatingBar ratingBar_avaliacao;
+    SeekBar seekBarRatingAvalia;
+    TextView textViewRating;
+    DatabaseReference databaseAvaliacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_avalia_artista);
+
+        textViewRating = (TextView) findViewById(R.id.textViewRating);
+        seekBarRatingAvalia = (SeekBar) findViewById(R.id.seekBarRating);
+
+
         listenerForRatingBar();
         avaliaArtista();
 
+        databaseAvaliacao = FirebaseDatabase.getInstance().getReference("avaliacao").child(Singleton.getInstacia().getEvent().getArtistLocalEvent());
+
+
+
+        seekBarRatingAvalia.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                textViewRating.setText(String.valueOf(i));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     public void listenerForRatingBar(){
@@ -49,6 +82,12 @@ public class AvaliaArtistaActivity extends AppCompatActivity {
         button_save_avaliacao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                String id = databaseAvaliacao.push().getKey();
+
+                databaseAvaliacao.child(id).setValue(seekBarRatingAvalia.toString());
+
                 AlertDialog.Builder alerta = new AlertDialog.Builder(AvaliaArtistaActivity.this);
                 alerta.setTitle("Nova Avaliação");
                 alerta.setMessage("Avaliação enviada com sucesso!");

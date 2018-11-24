@@ -18,7 +18,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.vagner.tocaaquela.R;
-import com.vagner.tocaaquela.model.Artist;
 
 
 public class MenuArtistaActivity extends AppCompatActivity implements View.OnClickListener{
@@ -48,7 +47,7 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_menu_artista);
         firebaseAuth = FirebaseAuth.getInstance();
 
-        databaseArtists = FirebaseDatabase.getInstance().getReference("artists");
+        databaseArtists = FirebaseDatabase.getInstance().getReference("events");
 
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -75,34 +74,14 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
         else {
             FirebaseUser user = firebaseAuth.getCurrentUser();
             textViewUserEmail = (TextView) findViewById(R.id.textViewUserEmailMenu);
-            textViewUserEmail.setText(" Olá "+user.getEmail());
-        }
-
-
-        //getting current user
-      //  FirebaseUser user = firebaseAuth.getCurrentUser();
-
-        //initializing views
-       // textViewUserName = (TextView) findViewById(R.id.textViewUserName);
-
-        //displaying logged in user name
-        //textViewUserName.setText("Olá "+user.getEmail());
-
-        //adding listener to button
-      //  buttonLogout.setOnClickListener(this);
-
-
-
-
-
-    /*
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            if(user.getDisplayName()!=null){
+                textViewUserEmail.setText(" Olá "+user.getDisplayName());
             }
-        });*/
+            else{
+                textViewUserEmail.setText(" Olá "+user.getEmail());
+            }
+
+        }
 
 
 
@@ -120,7 +99,7 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
                 break;
             case R.id.fab1:
                 //starting the activity with intent
-                startActivity(new Intent(getApplicationContext(), Main2Activity.class));
+                startActivity(new Intent(getApplicationContext(), EventActivity.class));
 
 
                 Log.d("Raj", "Fab 1");
@@ -160,25 +139,22 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu_menu_artista, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+
         if (id == R.id.action_pesquisar) {
             Intent intent = new Intent(this,PesquisaMusicaActivity.class);
             startActivity(intent);
             return true;
         }
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
              firebaseAuth.signOut();
              finish();

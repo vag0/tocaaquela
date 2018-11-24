@@ -2,14 +2,11 @@ package com.vagner.tocaaquela.model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
-
 @IgnoreExtraProperties
 public class Track {
     private String id;
     private String trackName;
     private int rating;
-    private String nomeAutor;
-
 
     public Track() {
 
@@ -25,15 +22,7 @@ public class Track {
         return trackName;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
     public int getRating() {
         return rating;
-    }
-
-    public String getNomeAutor() {
-        return nomeAutor;
     }
 }

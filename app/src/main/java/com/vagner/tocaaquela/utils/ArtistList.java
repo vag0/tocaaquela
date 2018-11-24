@@ -8,16 +8,15 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.vagner.tocaaquela.R;
-import com.vagner.tocaaquela.model.Artist;
+import com.vagner.tocaaquela.model.Evento1;
 
 import java.util.List;
 
-
-public class ArtistList extends ArrayAdapter<Artist> {
+public class ArtistList extends ArrayAdapter<Evento1> {
     private Activity context;
-    List<Artist> artists;
+    List<Evento1> artists;
 
-    public ArtistList(Activity context, List<Artist> artists) {
+    public ArtistList(Activity context, List<Evento1> artists) {
         super(context, R.layout.layout_artist_list, artists);
         this.context = context;
         this.artists = artists;
@@ -32,9 +31,9 @@ public class ArtistList extends ArrayAdapter<Artist> {
         TextView textViewName = (TextView) listViewItem.findViewById(R.id.textViewName);
         TextView textViewGenre = (TextView) listViewItem.findViewById(R.id.textViewGenre);
 
-        Artist artist = artists.get(position);
-        textViewName.setText(artist.getArtistLocalEvent());
-        textViewGenre.setText(artist.getArtistGenre());
+        Evento1 artist = artists.get(position);
+        textViewName.setText(artist.getEvento1Nome());
+        textViewGenre.setText(artist.getEvento1Genero());
 
         return listViewItem;
     }

@@ -12,74 +12,60 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.vagner.tocaaquela.R;
-import com.vagner.tocaaquela.model.Artist;
+import com.vagner.tocaaquela.model.Evento1;
 import com.vagner.tocaaquela.utils.ArtistList;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main2Activity extends AppCompatActivity {
-    public static final String ARTIST_NAME = "com.vagner.tocaaquela.artistid";
-    public static final String ARTIST_ID = "com.vagner.tocaaquela.artistid";
+public class EventActivity extends AppCompatActivity {
+    public static final String EVENTO_NAME = "com.vagner.tocaaquela.evento1name";
+    public static final String EVENTO_ID = "com.vagner.tocaaquela.evento1id";
 
-    TextView textViewNomeArtist;
-    EditText editTextLocal;
+    EditText editTextName;
     EditText editTextDia;
     EditText editTextHorario;
     Spinner spinnerGenre;
-    Button buttonAddArtist;
-    ListView listViewArtists;
+    Button buttonAddEvento;
+    ListView listViewEventos;
 
     //a list to store all the artist from firebase database
-    List<Artist> artists;
+    List<Evento1> eventos;
 
     //our database reference object
-    DatabaseReference databaseArtists;
-
-    private FirebaseAuth firebaseAuth;
-
+    DatabaseReference databaseEventos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_event);
 
-        //getting the reference of artists node
-        databaseArtists = FirebaseDatabase.getInstance().getReference("events");
+        //getting the reference of eventos node
+        databaseEventos = FirebaseDatabase.getInstance().getReference("eventos");
 
         //getting views
-        editTextLocal = (EditText)findViewById(R.id.editTextLocalEvent);
-        editTextDia = (EditText)findViewById(R.id.editTextDiaEvent);
-        editTextHorario = (EditText)findViewById(R.id.editTextName);
-       // textViewNomeArtist = (TextView) findViewById(R.id.textViewNameArtist);
+        editTextName = (EditText) findViewById(R.id.editTextName);
+        editTextDia = (EditText) findViewById(R.id.editTextDiaEvent);
+        editTextHorario = (EditText) findViewById(R.id.editTextHorario);
         spinnerGenre = (Spinner) findViewById(R.id.spinnerGenres);
-        listViewArtists = (ListView) findViewById(R.id.listViewArtists);
+        listViewEventos = (ListView) findViewById(R.id.listViewArtists);
 
-        buttonAddArtist = (Button) findViewById(R.id.buttonAddArtist);
+        buttonAddEvento = (Button) findViewById(R.id.buttonAddArtist);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-
-      //  textViewNomeArtist.setText(user.getEmail());
-
-
-        //list to store artists
-        artists = new ArrayList<>();
+        //list to store eventos
+        eventos = new ArrayList<>();
 
 
         //adding an onclicklistener to button
-        buttonAddArtist.setOnClickListener(new View.OnClickListener() {
+        buttonAddEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //calling the method addArtist()
@@ -90,29 +76,29 @@ public class Main2Activity extends AppCompatActivity {
         });
 
         //attaching listener to listview
-        listViewArtists.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewEventos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //getting the selected artist
-                Artist artist = artists.get(i);
+                Evento1 artist = eventos.get(i);
 
                 //creating an intent
                 Intent intent = new Intent(getApplicationContext(), ArtistActivity.class);
 
                 //putting artist name and id to intent
-                intent.putExtra(ARTIST_ID, artist.getArtistId());
-                intent.putExtra(ARTIST_NAME, artist.getArtistLocalEvent());
+                intent.putExtra(EVENTO_ID, artist.getEvento1Id());
+                intent.putExtra(EVENTO_NAME, artist.getEvento1Nome());
 
                 //starting the activity with intent
                 startActivity(intent);
             }
         });
 
-        listViewArtists.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listViewEventos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Artist artist = artists.get(i);
-                showUpdateDeleteDialog(artist.getArtistId(), artist.getArtistLocalEvent(),artist.getArtistDiaEvent(),artist.getArtistGenre(),artist.getArtistNameEmail(),artist.getArtistHorario());
+                Evento1 artist = eventos.get(i);
+                showUpdateDeleteDialog(artist.getEvento1Id(), artist.getEvento1Nome());
                 return true;
             }
         });
@@ -120,23 +106,21 @@ public class Main2Activity extends AppCompatActivity {
 
     }
 
-    private void showUpdateDeleteDialog(final String artistId, String artistLocal,String artistDia, String artistGenre,String nameEmail, String horario) {
+    private void showUpdateDeleteDialog(final String eventoId, String eventoNome) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.update_dialog, null);
         dialogBuilder.setView(dialogView);
 
-        final EditText editTextHorario = (EditText) dialogView.findViewById(R.id.editTextName);
+        final EditText editTextName = (EditText) dialogView.findViewById(R.id.editTextName);
         final EditText editTextDia = (EditText) dialogView.findViewById(R.id.editTextDiaEvent);
-        final EditText editTextLocal = (EditText) dialogView.findViewById(R.id.editTextLocalEvent);
+        final EditText editTextHorario = (EditText) dialogView.findViewById(R.id.editTextHorario);
         final Spinner spinnerGenre = (Spinner) dialogView.findViewById(R.id.spinnerGenres);
         final Button buttonUpdate = (Button) dialogView.findViewById(R.id.buttonUpdateArtist);
         final Button buttonDelete = (Button) dialogView.findViewById(R.id.buttonDeleteArtist);
 
-        dialogBuilder.setTitle(artistLocal);
-        dialogBuilder.setTitle(artistLocal);
-        dialogBuilder.setTitle(artistLocal);
+        dialogBuilder.setTitle(eventoNome);
         final AlertDialog b = dialogBuilder.create();
         b.show();
 
@@ -144,19 +128,12 @@ public class Main2Activity extends AppCompatActivity {
         buttonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                firebaseAuth = FirebaseAuth.getInstance();
-
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-
-                String horario = editTextHorario.getText().toString().trim();
-                String nameEmail = user.getEmail();
-                String genre = spinnerGenre.getSelectedItem().toString();
+                String name = editTextName.getText().toString().trim();
                 String dia = editTextDia.getText().toString().trim();
-                String local = editTextLocal.getText().toString().trim();
-
-
-                if (!TextUtils.isEmpty(local)) {
-                    updateArtist(artistId, local, dia,genre,nameEmail, horario);
+                String horario = editTextHorario.getText().toString().trim();
+                String genre = spinnerGenre.getSelectedItem().toString();
+                if (!TextUtils.isEmpty(name)&&!TextUtils.isEmpty(dia)&&!TextUtils.isEmpty(horario)) {
+                    updateArtist(eventoId, name, genre,dia,horario);
                     b.dismiss();
                 }
             }
@@ -167,26 +144,26 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                deleteArtist(artistId);
+                deleteArtist(eventoId);
                 b.dismiss();
             }
         });
     }
 
-    private boolean updateArtist(String id, String name, String genre, String local,String dia, String horario) {
+    private boolean updateArtist(String id, String name, String genre, String dia, String horario) {
         //getting the specified artist reference
-        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("events").child(id);
+        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("eventos").child(id);
 
         //updating artist
-        Artist artist = new Artist(id, name, genre,local,dia,horario);
+        Evento1 artist = new Evento1(id, name, genre, dia , horario);
         dR.setValue(artist);
-        Toast.makeText(getApplicationContext(), "Evento Atualizado", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Artist Updated", Toast.LENGTH_LONG).show();
         return true;
     }
 
     private boolean deleteArtist(String id) {
         //getting the specified artist reference
-        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("events").child(id);
+        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("eventos").child(id);
 
         //removing artist
         dR.removeValue();
@@ -196,7 +173,7 @@ public class Main2Activity extends AppCompatActivity {
 
         //removing all tracks
         drTracks.removeValue();
-        Toast.makeText(getApplicationContext(), "Evento Apagado", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Artist Deleted", Toast.LENGTH_LONG).show();
 
         return true;
     }
@@ -205,25 +182,25 @@ public class Main2Activity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         //attaching value event listener
-        databaseArtists.addValueEventListener(new ValueEventListener() {
+        databaseEventos.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 //clearing the previous artist list
-                artists.clear();
+                eventos.clear();
 
                 //iterating through all the nodes
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     //getting artist
-                    Artist artist = postSnapshot.getValue(Artist.class);
+                    Evento1 artist = postSnapshot.getValue(Evento1.class);
                     //adding artist to the list
-                    artists.add(artist);
+                    eventos.add(artist);
                 }
 
                 //creating adapter
-                ArtistList artistAdapter = new ArtistList(Main2Activity.this, artists);
+                ArtistList artistAdapter = new ArtistList(EventActivity.this, eventos);
                 //attaching adapter to the listview
-                listViewArtists.setAdapter(artistAdapter);
+                listViewEventos.setAdapter(artistAdapter);
             }
 
             @Override
@@ -239,40 +216,36 @@ public class Main2Activity extends AppCompatActivity {
      * Firebase Realtime Database
      * */
     private void addArtist() {
-        firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-
         //getting the values to save
-        String local = editTextLocal.getText().toString().trim();
-        String dia = editTextDia.getText().toString().trim();
-        String horario = editTextHorario.getText().toString().trim();
+        String name = editTextName.getText().toString().trim();
         String genre = spinnerGenre.getSelectedItem().toString();
-        String nameEmail = user.getEmail().trim();
+        String dia = spinnerGenre.getSelectedItem().toString();
+        String horario = editTextName.getText().toString().trim();
+
+
+
 
         //checking if the value is provided
-        if (!TextUtils.isEmpty(local)) {
+        if (!TextUtils.isEmpty(name)) {
 
             //getting a unique id using push().getKey() method
             //it will create a unique id and we will use it as the Primary Key for our Artist
-            String id = databaseArtists.push().getKey();
+            String id = databaseEventos.push().getKey();
 
             //creating an Artist Object
-            Artist artist = new Artist(id, local, dia,genre,nameEmail, horario);
+            Evento1 evento = new Evento1(id, name, genre, dia, horario);
 
             //Saving the Artist
-            databaseArtists.child(id).setValue(artist);
+            databaseEventos.child(id).setValue(evento);
 
             //setting edittext to blank again
-            editTextHorario.setText("");
-            editTextLocal.setText("");
-            editTextDia.setText("");
-
+            editTextName.setText("");
 
             //displaying a success toast
-            Toast.makeText(this, "Evento  Criado", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Artist added", Toast.LENGTH_LONG).show();
         } else {
             //if the value is not given displaying a toast
-            Toast.makeText(this, "Por favor informe os dados", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show();
         }
     }
 }
