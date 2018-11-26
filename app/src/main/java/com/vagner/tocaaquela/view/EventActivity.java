@@ -33,6 +33,7 @@ public class EventActivity extends AppCompatActivity {
     EditText editTextName;
     EditText editTextDia;
     EditText editTextHorario;
+    EditText editTextCodigo;
     Spinner spinnerGenre;
     Button buttonAddEvento;
     ListView listViewEventos;
@@ -55,6 +56,7 @@ public class EventActivity extends AppCompatActivity {
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextDia = (EditText) findViewById(R.id.editTextDiaEvent);
         editTextHorario = (EditText) findViewById(R.id.editTextHorario);
+        editTextCodigo = (EditText)findViewById(R.id.editTextCodigo);
         spinnerGenre = (Spinner) findViewById(R.id.spinnerGenres);
         listViewEventos = (ListView) findViewById(R.id.listViewArtists);
 
@@ -97,8 +99,8 @@ public class EventActivity extends AppCompatActivity {
         listViewEventos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Evento1 artist = eventos.get(i);
-                showUpdateDeleteDialog(artist.getEvento1Id(), artist.getEvento1Nome());
+                Evento1 evento = eventos.get(i);
+                showUpdateDeleteDialog(evento.getEvento1Id(), evento.getEvento1Nome());
                 return true;
             }
         });
@@ -116,6 +118,7 @@ public class EventActivity extends AppCompatActivity {
         final EditText editTextName = (EditText) dialogView.findViewById(R.id.editTextName);
         final EditText editTextDia = (EditText) dialogView.findViewById(R.id.editTextDiaEvent);
         final EditText editTextHorario = (EditText) dialogView.findViewById(R.id.editTextHorario);
+        final EditText editTextCodigo = (EditText) dialogView.findViewById(R.id.editTextCodigo);
         final Spinner spinnerGenre = (Spinner) dialogView.findViewById(R.id.spinnerGenres);
         final Button buttonUpdate = (Button) dialogView.findViewById(R.id.buttonUpdateArtist);
         final Button buttonDelete = (Button) dialogView.findViewById(R.id.buttonDeleteArtist);
@@ -131,9 +134,10 @@ public class EventActivity extends AppCompatActivity {
                 String name = editTextName.getText().toString().trim();
                 String dia = editTextDia.getText().toString().trim();
                 String horario = editTextHorario.getText().toString().trim();
+                String codigo = editTextCodigo.getText().toString().trim();
                 String genre = spinnerGenre.getSelectedItem().toString();
                 if (!TextUtils.isEmpty(name)&&!TextUtils.isEmpty(dia)&&!TextUtils.isEmpty(horario)) {
-                    updateArtist(eventoId, name, genre,dia,horario);
+                    updateArtist(eventoId, name, genre,dia,horario,codigo);
                     b.dismiss();
                 }
             }
@@ -150,12 +154,12 @@ public class EventActivity extends AppCompatActivity {
         });
     }
 
-    private boolean updateArtist(String id, String name, String genre, String dia, String horario) {
+    private boolean updateArtist(String id, String name, String genre, String dia, String horario, String codigo) {
         //getting the specified artist reference
         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("eventos").child(id);
 
         //updating artist
-        Evento1 artist = new Evento1(id, name, genre, dia , horario);
+        Evento1 artist = new Evento1(id, name, genre, dia , horario,codigo);
         dR.setValue(artist);
         Toast.makeText(getApplicationContext(), "Artist Updated", Toast.LENGTH_LONG).show();
         return true;
@@ -219,8 +223,9 @@ public class EventActivity extends AppCompatActivity {
         //getting the values to save
         String name = editTextName.getText().toString().trim();
         String genre = spinnerGenre.getSelectedItem().toString();
-        String dia = spinnerGenre.getSelectedItem().toString();
-        String horario = editTextName.getText().toString().trim();
+        String dia = editTextDia.getText().toString().trim();
+        String horario = editTextHorario.getText().toString().trim();
+        String codigo = editTextCodigo.getText().toString().trim();
 
 
 
@@ -233,7 +238,7 @@ public class EventActivity extends AppCompatActivity {
             String id = databaseEventos.push().getKey();
 
             //creating an Artist Object
-            Evento1 evento = new Evento1(id, name, genre, dia, horario);
+            Evento1 evento = new Evento1(id, name, genre, dia, horario, codigo);
 
             //Saving the Artist
             databaseEventos.child(id).setValue(evento);
@@ -242,10 +247,10 @@ public class EventActivity extends AppCompatActivity {
             editTextName.setText("");
 
             //displaying a success toast
-            Toast.makeText(this, "Artist added", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Evento criado", Toast.LENGTH_LONG).show();
         } else {
             //if the value is not given displaying a toast
-            Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Por favor informe os dados", Toast.LENGTH_LONG).show();
         }
     }
 }

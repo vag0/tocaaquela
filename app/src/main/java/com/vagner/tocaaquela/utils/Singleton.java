@@ -1,12 +1,15 @@
 package com.vagner.tocaaquela.utils;
 
 import com.vagner.tocaaquela.model.Event;
+import com.vagner.tocaaquela.model.Evento1;
 
 public class Singleton {
 
     private static Singleton instancia;
 
-    private Event event;
+    private Evento1 evento;
+
+    private String codigo;
 
     public Singleton(){}
 
@@ -19,15 +22,23 @@ public class Singleton {
         return instancia;
     }
 
-    public void salva(Event event) {
-        this.event = event;
+    public void salva(Evento1 evento) {
+        this.evento = evento;
     }
 
-    public Event getEvent() {
-        return event;
+    public void salvaCodigo(String codigo){
+
+        this.codigo = codigo;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public String getCodigo(){
+       return codigo; }
+
+    public Evento1 getEvento() {
+        return evento;
+    }
+
+    public void setEvento1(Evento1 evento) {
+        this.evento = evento;
     }
 }

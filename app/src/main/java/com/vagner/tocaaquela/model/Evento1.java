@@ -10,17 +10,19 @@ import com.google.firebase.database.IgnoreExtraProperties;
         private String evento1Genero;
         private String evento1Dia;
         private String evento1Horario;
+        private String evento1Codigo;
 
         public Evento1(){
 
         }
 
-        public Evento1(String evento1Id, String evento1Nome, String evento1Genero, String evento1Dia, String evento1Horario) {
+        public Evento1(String evento1Id, String evento1Nome, String evento1Genero, String evento1Dia, String evento1Horario,String evento1Codigo) {
             this.evento1Id = evento1Id;
             this.evento1Nome = evento1Nome;
             this.evento1Genero = evento1Genero;
             this.evento1Dia = evento1Dia;
             this.evento1Horario = evento1Horario;
+            this.evento1Codigo = evento1Codigo;
         }
 
         public String getEvento1Id() {
@@ -43,4 +45,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
         public String getEvento1Horario() {
             return evento1Horario;
         }
+
+         public String getEvento1Codigo() { return evento1Codigo;
+    }
 }

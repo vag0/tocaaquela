@@ -4,7 +4,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".view.ArtistActivity">
 
     <TextView
@@ -28,7 +27,6 @@
         android:id="@+id/buttonAddTrack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/linearLayout"
         android:layout_centerHorizontal="true"
         android:text="Adiconar Música" />
 

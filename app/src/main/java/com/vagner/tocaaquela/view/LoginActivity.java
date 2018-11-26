@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
 
-        progressDialog.setMessage("Registrando Aguarde...");
+        progressDialog.setMessage("Aguarde...");
         progressDialog.show();
 
 

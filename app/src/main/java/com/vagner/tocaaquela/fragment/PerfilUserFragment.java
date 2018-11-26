@@ -34,6 +34,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.vagner.tocaaquela.R;
 import com.vagner.tocaaquela.model.Sugestao;
+import com.vagner.tocaaquela.view.LoginArtistaActivity;
+import com.vagner.tocaaquela.view.LoginArtistaActivityTeste;
 import com.vagner.tocaaquela.view.MenuArtistaActivity;
 
 /**
@@ -42,7 +44,7 @@ import com.vagner.tocaaquela.view.MenuArtistaActivity;
 public class PerfilUserFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener{
 
     private static int RC_SIGN_IN = 0;
-    private static String TAG = "MAIN_ACTIVITY";
+    private static String TAG = "PERFIL_USER_FRAGMENT";
     private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -96,14 +98,14 @@ public class PerfilUserFragment extends Fragment implements GoogleApiClient.OnCo
 
 
         buttonSingIn = (SignInButton) view.findViewById(R.id.sign_in_button);
-        buttonSingOut = (Button)view.findViewById(R.id.sign_out_button);
+         //buttonSingOut = (Button)view.findViewById(R.id.sign_out_button);
         imagemViewPerfil =(ImageView) view.findViewById(R.id.imagem_perfil);
         textViewEmailUser = (TextView)view.findViewById(R.id.email_perfil);
         textViewNomeUser =(TextView)view.findViewById(R.id.nome_perfil);
 
 
         buttonSingIn.setOnClickListener(this);
-        buttonSingOut.setOnClickListener(this);
+      //  buttonSingOut.setOnClickListener(this);
         return view;
     }
 
@@ -121,8 +123,8 @@ public class PerfilUserFragment extends Fragment implements GoogleApiClient.OnCo
     @Override
     public void onStart() {
         super.onStart();
-        buttonSingOut.setVisibility(View.GONE);
-        mAuth.addAuthStateListener(mAuthListener);
+        //buttonSingOut.setVisibility(View.GONE);
+       mAuth.addAuthStateListener(mAuthListener);
         if (mGoogleApiClient != null){
             mGoogleApiClient.connect();
 
@@ -165,10 +167,7 @@ public class PerfilUserFragment extends Fragment implements GoogleApiClient.OnCo
                 // Intent intencao = new Intent(getActivity(),EscolhaDeMusicasActivity.class);
                // startActivity(intencao);
             }
-            else {
-                buttonSingOut.setVisibility(View.VISIBLE);
 
-            }
             Log.d(TAG, "Google Login Failed");
 
         }
@@ -185,7 +184,7 @@ public class PerfilUserFragment extends Fragment implements GoogleApiClient.OnCo
         textViewEmailUser.setText(emailPerfil);
         Glide.with(getActivity()).load(imagemPerfil).into(imagemViewPerfil);
         buttonSingIn.setVisibility(View.GONE);
-        buttonSingOut.setVisibility(View.VISIBLE);
+      //  buttonSingOut.setVisibility(View.VISIBLE);
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct){
@@ -204,10 +203,7 @@ public class PerfilUserFragment extends Fragment implements GoogleApiClient.OnCo
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    private void signOut(){
-        FirebaseAuth.getInstance().signOut();
 
-    }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
@@ -220,9 +216,9 @@ public class PerfilUserFragment extends Fragment implements GoogleApiClient.OnCo
             case R.id.sign_in_button:
                 signIn();
                 break;
-            case R.id.sign_out_button:
-                signOut();
-                break;
+          //  case R.id.sign_out_button:
+             //   signOut();
+               //break;
         }
     }
 
@@ -245,10 +241,11 @@ public class PerfilUserFragment extends Fragment implements GoogleApiClient.OnCo
 
 
         if (id == R.id.action_sou_artista) {
-           // if(FirebaseAuth.getInstance().getCurrentUser().getEmail().equals("ti.vagner@gmail.com")){
-               Intent intent = new Intent(getActivity(),MenuArtistaActivity.class);
+
+               Intent intent = new Intent(getActivity(),LoginArtistaActivityTeste.class);
                startActivity(intent);
-           // }
+
+
             return true;
         }
 

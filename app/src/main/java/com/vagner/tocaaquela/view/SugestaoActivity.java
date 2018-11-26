@@ -18,6 +18,7 @@ import com.vagner.tocaaquela.R;
 import com.vagner.tocaaquela.model.Evento;
 import com.vagner.tocaaquela.model.Musica;
 import com.vagner.tocaaquela.model.Sugestao;
+import com.vagner.tocaaquela.utils.Singleton;
 
 public class SugestaoActivity extends AppCompatActivity {
     private TextView textViewSugestao;
@@ -53,15 +54,12 @@ public class SugestaoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(capturaDados()){
-                //sugestao = new Sugestao();
-
-                //if(sugestao.getMensagem()!=null){
 
                     SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_config), Context.MODE_PRIVATE);
                     String id = sharedPreferences.getString(getString(R.string.id), "");
 
-                    DatabaseReference myRef = database.getReference("sugestoes");
-                    myRef.child(id).push().setValue(sugestao).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    DatabaseReference databaseSugestoes = database.getReference("sugestoes").child(Singleton.getInstacia().getEvento().getEvento1Id());
+                    databaseSugestoes.child(id).push().setValue(sugestao).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             AlertDialog.Builder alerta = new AlertDialog.Builder(SugestaoActivity.this);

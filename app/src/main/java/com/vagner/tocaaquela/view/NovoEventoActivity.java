@@ -39,7 +39,7 @@ public class NovoEventoActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
 
-        databaseEvents = FirebaseDatabase.getInstance().getReference("events").child(intent.getStringExtra(MenuArtistaActivity.ARTIST_ID));
+        databaseEvents = FirebaseDatabase.getInstance().getReference("events").child(intent.getStringExtra(MenuArtistaActivity.EVENTO_ID));
 
 
 

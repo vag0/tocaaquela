@@ -18,12 +18,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.vagner.tocaaquela.R;
+import com.vagner.tocaaquela.fragment.EventoFragment;
+import com.vagner.tocaaquela.utils.FragmentoUtils;
 
 
 public class MenuArtistaActivity extends AppCompatActivity implements View.OnClickListener{
-
-    public static final String ARTIST_NAME = "com.vagner.tocaaquela.artistid";
-    public static final String ARTIST_ID = "com.vagner.tocaaquela.artistid";
+    public static final String EVENTO_NAME = "com.vagner.tocaaquela.evento1name";
+    public static final String EVENTO_ID = "com.vagner.tocaaquela.evento1id";
 
     private Boolean isFabOpen = false;
     FloatingActionButton fab1;
@@ -69,7 +70,7 @@ public class MenuArtistaActivity extends AppCompatActivity implements View.OnCli
             //closing this activity
             finish();
             //starting login activity
-            startActivity(new Intent(this, LoginArtistaActivityTeste.class));
+            FragmentoUtils.replace(this, new EventoFragment());
         }
         else {
             FirebaseUser user = firebaseAuth.getCurrentUser();

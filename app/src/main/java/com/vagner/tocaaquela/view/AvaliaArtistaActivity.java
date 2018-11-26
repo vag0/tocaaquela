@@ -23,8 +23,6 @@ public class AvaliaArtistaActivity extends AppCompatActivity {
     private  static Button button_save_avaliacao;
     private  static TextView textView_avaliacao;
     private  static RatingBar ratingBar_avaliacao;
-    SeekBar seekBarRatingAvalia;
-    TextView textViewRating;
     DatabaseReference databaseAvaliacao;
 
     @Override
@@ -32,33 +30,16 @@ public class AvaliaArtistaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_avalia_artista);
 
-        textViewRating = (TextView) findViewById(R.id.textViewRating);
-        seekBarRatingAvalia = (SeekBar) findViewById(R.id.seekBarRating);
 
 
         listenerForRatingBar();
         avaliaArtista();
 
-        databaseAvaliacao = FirebaseDatabase.getInstance().getReference("avaliacao").child(Singleton.getInstacia().getEvent().getArtistLocalEvent());
+        databaseAvaliacao = FirebaseDatabase.getInstance().getReference("avaliacao").child(Singleton.getInstacia().getEvento().getEvento1Nome());
 
 
 
-        seekBarRatingAvalia.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                textViewRating.setText(String.valueOf(i));
-            }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
     }
 
     public void listenerForRatingBar(){
@@ -69,6 +50,9 @@ public class AvaliaArtistaActivity extends AppCompatActivity {
         ratingBar_avaliacao.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                String id = databaseAvaliacao.push().getKey();
+                databaseAvaliacao.child(id).setValue(v);
+
                 textView_avaliacao.setText(String.valueOf(v));
             }
         });
@@ -82,11 +66,6 @@ public class AvaliaArtistaActivity extends AppCompatActivity {
         button_save_avaliacao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                String id = databaseAvaliacao.push().getKey();
-
-                databaseAvaliacao.child(id).setValue(seekBarRatingAvalia.toString());
 
                 AlertDialog.Builder alerta = new AlertDialog.Builder(AvaliaArtistaActivity.this);
                 alerta.setTitle("Nova Avaliação");

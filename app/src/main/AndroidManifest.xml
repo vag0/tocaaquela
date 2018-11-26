@@ -35,6 +35,7 @@
         <activity android:name=".view.LoginActivity" />
         <activity android:name=".view.ArtistActivity" />
         <activity android:name=".view.EventActivity" />
+        <activity android:name=".view.BloqueiaVotoActivity"></activity>
     </application>
 
 </manifest>

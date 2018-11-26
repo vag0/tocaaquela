@@ -7,12 +7,43 @@
     android:background="@color/azulEscuro"
     tools:context=".view.EscolhaDeMusicasActivity">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical">
+
+
+        <LinearLayout
+            android:background="@color/azulEscuro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="20dp">
+            <EditText
+                android:id="@+id/editTextCodigoUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@color/colorBranco"
+                android:text="codigo" />
+
+
+            <Button
+                android:id="@+id/buttonEnviaCodigo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:text="enviar codigo" />
+
+
+        </LinearLayout>
+
 
         <ListView
             android:layout_marginTop="10dp"

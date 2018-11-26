@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import com.vagner.tocaaquela.R;
 import com.vagner.tocaaquela.fragment.EventoFragment;
 import com.vagner.tocaaquela.fragment.MinhasMusicasFragment;
+import com.vagner.tocaaquela.fragment.PerfilFragment;
 import com.vagner.tocaaquela.fragment.PerfilUserFragment;
 import com.vagner.tocaaquela.utils.BottomNavigationViewHelper;
 import com.vagner.tocaaquela.utils.FragmentoUtils;
@@ -50,10 +51,10 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
 
-        //FragmentoUtils.replace(MainActivity.this, new EventoFragment());
+        FragmentoUtils.replace(MainActivity.this, new EventoFragment());
 
-        Intent intent = new Intent(this,EventActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this,EventActivity.class);
+        //startActivity(intent);
     }
 
 }

@@ -19,9 +19,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.vagner.tocaaquela.R;
 import com.vagner.tocaaquela.model.Event;
+import com.vagner.tocaaquela.model.Evento1;
 import com.vagner.tocaaquela.utils.EventoList;
 import com.vagner.tocaaquela.utils.FragmentoUtils;
 import com.vagner.tocaaquela.utils.Singleton;
+import com.vagner.tocaaquela.view.BloqueiaVotoActivity;
 import com.vagner.tocaaquela.view.EscolhaDeMusicasActivity;
 
 import java.util.ArrayList;
@@ -31,16 +33,17 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class EventoFragment extends Fragment {
-    public static final String EVENT_NAME = "com.vagner.tocaaquela.artistid";
-    public static final String EVENT_ID = "com.vagner.tocaaquela.artistid";
+    public static final String EVENTO_NAME = "com.vagner.tocaaquela.evento1name";
+    public static final String EVENTO_ID = "com.vagner.tocaaquela.evento1id";
+
     private String idUsuario;
     private FirebaseAuth auth;
 
     ListView listViewEventos;
 
-    List<Event> events;
+    List<Evento1> eventos;
 
-    DatabaseReference databaseArtists;
+    DatabaseReference databaseEventos;
 
 
     @Override
@@ -51,28 +54,28 @@ public class EventoFragment extends Fragment {
 
         auth = FirebaseAuth.getInstance();
 
-        databaseArtists = FirebaseDatabase.getInstance().getReference("events");
+        databaseEventos = FirebaseDatabase.getInstance().getReference("eventos");
 
 
 
         listViewEventos = (ListView) view.findViewById(R.id.listViewEventos_id);
 
 
-        events = new ArrayList<>();
+        eventos = new ArrayList<>();
 
         listViewEventos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
 
-                        Event event = events.get(i);
+                        Evento1 evento = eventos.get(i);
                         Intent intent = new Intent(getContext(), EscolhaDeMusicasActivity.class);
-                        intent.putExtra(EVENT_ID, event.getArtistId());
-                        intent.putExtra(EVENT_NAME, event.getArtistLocalEvent());
+                        intent.putExtra(EVENTO_ID, evento.getEvento1Id());
+                        intent.putExtra(EVENTO_NAME, evento.getEvento1Nome());
                         startActivity(intent);
                         verificaAuth();
 
-                         Singleton.getInstacia().salva(event);
+                         Singleton.getInstacia().salva(evento);
 
 
             }
@@ -86,23 +89,23 @@ public class EventoFragment extends Fragment {
 
 
     public void buscaEventos() {
-        databaseArtists.addValueEventListener(new ValueEventListener() {
+        databaseEventos.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                events.clear();
+                eventos.clear();
 
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
-                    Event event = postSnapshot.getValue(Event.class);
+                    Evento1 evento = postSnapshot.getValue(Evento1.class);
 
-                    events.add(event);
+                    eventos.add(evento);
                 }
 
 
                 if (getActivity()!=null){
 
-                    EventoList   eventoAdapter = new EventoList(getActivity(), events);
+                    EventoList   eventoAdapter = new EventoList(getActivity(), eventos);
                     listViewEventos.setAdapter(eventoAdapter);
 
                 }

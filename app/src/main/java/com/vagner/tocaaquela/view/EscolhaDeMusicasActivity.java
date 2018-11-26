@@ -1,14 +1,22 @@
 package com.vagner.tocaaquela.view;
 
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import android.widget.TextView;
@@ -37,12 +45,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EscolhaDeMusicasActivity extends AppCompatActivity {
-    ListView listViewEventos;
-    ListView listViewTracks;
 
-    List<Evento> eventos;
-    private Voto voto;
-    Context context;
+
 
     private FirebaseAuth firebaseAuth;
 
@@ -50,24 +54,21 @@ public class EscolhaDeMusicasActivity extends AppCompatActivity {
 
 
     ListView listViewMusicas;
-    List<Musica> musicas;
-    DatabaseReference myRef;
 
 
-    int limiteDeVoto = 10;
-    int cont = 0;
 
-    DatabaseReference databaseEventos;
     DatabaseReference databaseVotos;
 
     DatabaseReference databaseTracks;
 
-    DatabaseReference databaseContaVotos;
 
-    TextView textViewRating, textViewArtist;
+    TextView textViewCodigo;
+    Button buttonEnviaCodigo;
+
+    String codigoDigitado;
 
     List<Track> tracks;
-    List<Voto> votos;
+
     private String idUsuario;
     private FirebaseAuth auth;
 
@@ -82,14 +83,23 @@ public class EscolhaDeMusicasActivity extends AppCompatActivity {
 
 
 
-        databaseTracks = FirebaseDatabase.getInstance().getReference("tracks").child(getIntent().getStringExtra(EventoFragment.EVENT_ID));
+        databaseTracks = FirebaseDatabase.getInstance().getReference("tracks").child(getIntent().getStringExtra(EventoFragment.EVENTO_ID));
 
-        databaseVotos = FirebaseDatabase.getInstance().getReference("votos").child(getIntent().getStringExtra(EventoFragment.EVENT_ID));
+        databaseVotos = FirebaseDatabase.getInstance().getReference("votos").child(getIntent().getStringExtra(EventoFragment.EVENTO_ID));
 
-        databaseContaVotos = FirebaseDatabase.getInstance().getReference("votos");
 
 
         listViewMusicas = findViewById(R.id.listViewMusicas_id);
+        textViewCodigo = findViewById(R.id.editTextCodigoUser);
+        buttonEnviaCodigo = findViewById(R.id.buttonEnviaCodigo);
+        buttonEnviaCodigo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               codigoDigitado  = textViewCodigo.getText().toString().trim();
+               textViewCodigo.setText("");
+
+            }
+        });
 
 
         tracks = new ArrayList<>();
@@ -105,15 +115,28 @@ public class EscolhaDeMusicasActivity extends AppCompatActivity {
 
     }
 
+
     private void escolhaDeMusica() {
 
+
+
+       /* AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+// ...Irrelevant code for customizing the buttons and title
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.layout_alert_codigo, null);
+        dialogBuilder.setView(dialogView);
+
+        EditText editText = (EditText) dialogView.findViewById(R.id.editTextInformationName);
+        editText.setText("test label");
+        AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();*/
 
         listViewMusicas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                firebaseAuth = FirebaseAuth.getInstance();
-                FirebaseUser user = firebaseAuth.getCurrentUser();
+               FirebaseUser user = firebaseAuth.getCurrentUser();
 
 
                String emailUser = user.getEmail();
@@ -123,10 +146,14 @@ public class EscolhaDeMusicasActivity extends AppCompatActivity {
                 track = tracks.get(i);
 
                 String nome = track.getTrackName();
+                int cont = 0;
 
 
 
-                String nomeEvento = Singleton.getInstacia().getEvent().getArtistLocalEvent();
+                String nomeEvento = Singleton.getInstacia().getEvento().getEvento1Nome();
+
+                String codigoEvento = Singleton.getInstacia().getEvento().getEvento1Codigo();
+
 
 
                 String id = databaseVotos.push().getKey();
@@ -135,12 +162,18 @@ public class EscolhaDeMusicasActivity extends AppCompatActivity {
 
                Voto voto = new Voto(id,nome, emailUser,nomeEvento);
 
-                databaseVotos.child(id).setValue(voto);
+               if(codigoDigitado.equals(codigoEvento)){
+                   cont++;
+                   databaseVotos.child(id).setValue(voto);
+                   Toast.makeText(getBaseContext(), " Voto numero "+cont, Toast.LENGTH_SHORT).show();
 
 
+               }
+               else {
 
-                cont = cont + 1;
-                Toast.makeText(getBaseContext(), " Seus votos foram "+cont, Toast.LENGTH_SHORT).show();
+                   finish();
+                   Toast.makeText(getBaseContext(), " codigo digitado "+codigoDigitado, Toast.LENGTH_SHORT).show();
+               }
 
 
 
@@ -224,10 +257,6 @@ public class EscolhaDeMusicasActivity extends AppCompatActivity {
         }
 
     }
-
-
-
-
 
 
 

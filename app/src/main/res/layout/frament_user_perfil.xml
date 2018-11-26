@@ -62,16 +62,6 @@
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp" />
 
-        <Button
-            android:id="@+id/sign_out_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/sign_in_button"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginRight="80dp"
-            android:background="@drawable/round_btn_linear_green"
-            android:text="Sign Out" />
 
 
     </LinearLayout>

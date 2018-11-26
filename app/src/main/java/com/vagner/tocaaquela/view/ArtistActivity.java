@@ -46,8 +46,6 @@ public class ArtistActivity extends AppCompatActivity {
 
         buttonAddTrack = (Button) findViewById(R.id.buttonAddTrack);
         editTextTrackName = (EditText) findViewById(R.id.editTextName);
-        //seekBarRating = (SeekBar) findViewById(R.id.seekBarRating);
-        textViewRating = (TextView) findViewById(R.id.textViewRating);
         textViewArtist = (TextView) findViewById(R.id.textViewArtist);
         listViewTracks = (ListView) findViewById(R.id.listViewTracks);
 

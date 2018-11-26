@@ -24,8 +24,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginArtistaActivityTeste extends AppCompatActivity implements View.OnClickListener {
-        public static final String ARTIST_NAME = "com.vagner.tocaaquela.artistid";
-        public static final String ARTIST_ID = "com.vagner.tocaaquela.artistid";
 
         private EditText editTextEmail;
         private EditText editTextPassword;
@@ -47,7 +45,7 @@ public class LoginArtistaActivityTeste extends AppCompatActivity implements View
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_login_artista_teste);
-            databaseArtists = FirebaseDatabase.getInstance().getReference("events");
+            databaseArtists = FirebaseDatabase.getInstance().getReference("Artistas");
 
 
             firebaseAuth = FirebaseAuth.getInstance();
@@ -102,7 +100,7 @@ public class LoginArtistaActivityTeste extends AppCompatActivity implements View
 
 
 
-            progressDialog.setMessage("Aguarde por favor...");
+            progressDialog.setMessage("Registrando...");
             progressDialog.show();
 
 

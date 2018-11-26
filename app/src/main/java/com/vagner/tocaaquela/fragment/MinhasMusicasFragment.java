@@ -1,6 +1,7 @@
 package com.vagner.tocaaquela.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,11 +18,16 @@ import com.google.firebase.database.ValueEventListener;
 import com.vagner.tocaaquela.R;
 import com.vagner.tocaaquela.model.Musica;
 import com.vagner.tocaaquela.model.Track;
+import com.vagner.tocaaquela.utils.FragmentoUtils;
 import com.vagner.tocaaquela.utils.MusicaList;
 import com.vagner.tocaaquela.utils.Singleton;
+import com.vagner.tocaaquela.view.MainActivity;
+import com.vagner.tocaaquela.view.MenuArtistaActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 
 /**
@@ -47,7 +53,8 @@ public class MinhasMusicasFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_minhas_musicas, container, false);
 
-        databaseVotos = FirebaseDatabase.getInstance().getReference("votos").child(Singleton.getInstacia().getEvent().getArtistLocalEvent());
+
+
 
 
 
@@ -73,7 +80,21 @@ public class MinhasMusicasFragment extends Fragment {
 
         return view;
     }
-//firebase.database().ref('receitas').orderByChild('tipo_nome').startAt('true_').endAt('true_\uf8ff');
+
+    private void verificaLogin() {
+        if(Singleton.getInstacia().getEvento()== null){
+            databaseVotos = FirebaseDatabase.getInstance().getReference("votos").child("");
+
+
+        }
+        else{
+            databaseVotos = FirebaseDatabase.getInstance().getReference("votos").child(Singleton.getInstacia().getEvento().getEvento1Nome());
+
+        }
+
+
+    }
+
 public void buscaMusicas() {
     databaseVotos.addValueEventListener(new ValueEventListener() {
         @Override
@@ -83,8 +104,10 @@ public void buscaMusicas() {
                 Track track = postSnapshot.getValue(Track.class);
                 tracks.add(track);
             }
-            MusicaList musicaListAdapter = new MusicaList(getActivity(), tracks);
-            listViewMinhasMusicas.setAdapter(musicaListAdapter);
+            if(getActivity()!= null){
+                MusicaList musicaListAdapter = new MusicaList(getActivity(), tracks);
+                listViewMinhasMusicas.setAdapter(musicaListAdapter);
+            }
         }
 
         @Override
@@ -96,10 +119,10 @@ public void buscaMusicas() {
 
     public void onStart() {
         super.onStart();
-        if(Singleton.getInstacia()==null){
-        }
+        verificaLogin();
         buscaMusicas();
     }
+
 
 
 
